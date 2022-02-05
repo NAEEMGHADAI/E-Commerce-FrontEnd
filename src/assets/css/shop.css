@@ -1,0 +1,109 @@
+.buttonLoad span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.buttonLoad span:after {
+	content: "\00bb";
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.buttonLoad:hover span {
+	padding-right: 25px;
+}
+
+.buttonLoad:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+.buttonLoad span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.buttonLoad span:after {
+	content: "\00bb";
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.buttonLoad:hover span {
+	padding-right: 25px;
+}
+
+.buttonLoad:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.sidebar {
+	margin: 0;
+	padding: 0;
+	width: 270px;
+	position: fixed;
+	margin-top: 60px;
+	height: 100%;
+	overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+	.sidebar {
+		width: 100%;
+		height: auto;
+		position: relative;
+		margin-top: 10px;
+	}
+}
+div.content {
+	margin-left: 50px;
+	padding: 1px 16px;
+	height: auto;
+}
+
+@media screen and (max-width: 700px) {
+	.sidebar {
+		width: 100%;
+		height: auto;
+		position: relative;
+	}
+
+	div.content {
+		margin-left: 0;
+	}
+}
+
+.rowFilter {
+	margin: 0.5rem;
+}
+
+.shadowFilter {
+	box-shadow: 0px 11px 15px -7px;
+	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.Filterbox {
+	border-radius: 0.3rem;
+	width: 16rem;
+	height: 80vh;
+}
+
+@media screen and (max-width: 480px) {
+	.Filterbox {
+		border-radius: 0.3rem;
+		margin-left: auto;
+		margin-right: auto;
+		width: 16rem;
+		height: 60vh;
+	}
+}
