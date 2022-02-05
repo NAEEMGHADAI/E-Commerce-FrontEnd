@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
 import { read, update, updateUser } from "./apiUser";
-import Menu from "../core/Menu";
 
 const Profile = ({ match }) => {
 	const [values, setValues] = useState({
@@ -105,7 +104,6 @@ const Profile = ({ match }) => {
 		//   className="container-fluid"
 		// >
 		<>
-			<Menu />
 			<br />
 			<h2 className="mb-4">Profile update</h2>
 			{profileUpdate(name, email, password)}

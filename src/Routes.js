@@ -18,10 +18,12 @@ import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import PlaceOrder from "./core/PlaceOrder";
 import OrderDetails from "./user/OrderDetails";
+import Menu from "./core/Menu";
 
 const Routes = () => {
 	return (
 		<BrowserRouter>
+			<Menu />
 			<Switch>
 				<Route path="/" exact component={Home} />
 				<Route path="/shop" exact component={Shop} />

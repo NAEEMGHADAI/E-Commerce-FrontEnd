@@ -1,7 +1,6 @@
 import React from "react";
 import { isAuthenticated } from "../auth";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
-import Menu from "../core/Menu";
 import AddCategory from "../admin/AddCategory";
 import AddProduct from "../admin/AddProduct";
 import Orders from "../admin/Orders";
@@ -122,7 +121,6 @@ const AdminDashboard = () => {
 
 	return (
 		<>
-			<Menu />
 			<br />
 			<div className="row pt-5">
 				<div className="col-md-12 col-12">{adminLinks()}</div>

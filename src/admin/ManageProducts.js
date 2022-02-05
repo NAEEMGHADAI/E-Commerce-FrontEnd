@@ -3,7 +3,6 @@ import { isAuthenticated } from "../auth";
 import { Link, useHistory } from "react-router-dom";
 import { getProducts, deleteProduct } from "./apiAdmin";
 import moment from "moment";
-import Menu from "../core/Menu";
 import "../assets/css/ManageProduct.css";
 
 const ManageProducts = () => {
@@ -46,8 +45,6 @@ const ManageProducts = () => {
 		//   className="container-fluid"
 		// >
 		<>
-			<Menu />
-
 			<div class="row justify-content-center rowManageProduct">
 				<div class="ManageProductbox shadowManageProduct p-3">
 					<div className="row">

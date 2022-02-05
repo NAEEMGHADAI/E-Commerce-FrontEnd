@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Menu from "../core/Menu";
 import { read, listRelated } from "./apiCore";
 import { Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
@@ -113,7 +112,6 @@ const Product = (props) => {
 		// 	className="container-fluid"
 		// >
 		<>
-			<Menu />
 			{loading ? (
 				<Loader />
 			) : (

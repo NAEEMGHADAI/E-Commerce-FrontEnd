@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth";
-import Menu from "../core/Menu";
 import { FiUpload } from "react-icons/fi";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { createProduct, getCategories } from "./apiAdmin";
@@ -233,7 +232,6 @@ const AddProduct = () => {
 		// </>
 		<div class="row justify-content-center rowAddProduct">
 			<div class="AddProductbox shadowAddProduct p-3">
-				<Menu />
 				<br />
 
 				<div className="row ">

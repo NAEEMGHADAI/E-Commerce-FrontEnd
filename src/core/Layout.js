@@ -1,5 +1,4 @@
 import React from "react";
-import Menu from "./Menu";
 import Carousel from "react-bootstrap/Carousel";
 import carsouselPhoto1 from "../assets/img/Carousel/Brand-image-flute-2-3.jpg";
 import carsouselPhoto2 from "../assets/img/Carousel/nepsis-3.jpeg";
@@ -13,7 +12,6 @@ const Layout = ({
 }) => {
 	return (
 		<div>
-			<Menu />
 			{/* <div className="jumbotron text-center">
         <br />
         <h2>{title}</h2>

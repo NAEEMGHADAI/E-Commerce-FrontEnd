@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { getCategories, getFilteredProducts } from "./apiCore";
 import Checkbox from "./Checkbox";
 import { FiFilter } from "react-icons/fi";
-import Menu from "./Menu";
 import "../assets/css/shop.css";
 import Loader from "../Loader/Loader.js";
 import ProductCard from "./ProductCard.js";
@@ -171,7 +170,6 @@ const Shop = () => {
 		//   className="container-fluid"
 		// >
 		<div className="pt-5">
-			<Menu />
 			<h3 className="pl-3 pt-3 text-center d-block d-sm-none">
 				Products <hr />
 			</h3>

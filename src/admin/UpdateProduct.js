@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
 import { getProduct, getCategories, updateProduct } from "./apiAdmin";
-import Menu from "../core/Menu";
 import { FiUpload } from "react-icons/fi";
 import { BiPencil } from "react-icons/bi";
 import "../assets/css/UpdateProduct.css";
@@ -243,7 +242,6 @@ const UpdateProduct = ({ match }) => {
 		//   descripton={`G'day ${user.name}, ready to update your product?`}
 		// >
 		<>
-			<Menu />
 			<div
 				className="row justify-content-center rowUpdateProduct 
 "

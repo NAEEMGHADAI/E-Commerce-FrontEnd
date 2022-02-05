@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCart } from "./cartHelpers";
 import cartPhoto from "../assets/img/cartItem.png";
-import Menu from "./Menu";
 import "../assets/css/Cart.css";
 import CartItems from "./CartItems";
 
@@ -133,8 +132,6 @@ const Cart = ({ history }) => {
 		//   className="container-fluid"
 		// >
 		<>
-			<Menu />
-
 			<div className="row pt-5">
 				{items.length > 0 ? showItems(items) : noItemsMessage()}
 

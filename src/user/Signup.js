@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signup } from "../auth";
-import Menu from "../core/Menu";
 import { FiSend } from "react-icons/fi";
 import showPwdImg from "../assets/img/Password/red-eye.png";
 import hidePwdImg from "../assets/img/Password/hide.png";
@@ -202,7 +201,6 @@ const Signup = ({ history }) => {
 		//   className="container col-md-8 offset-md-2"
 		// >
 		<>
-			<Menu />
 			{/* <br />
       <h5 className="pl-1 pt-3">Please SignUp or Register</h5>
       <hr /> */}

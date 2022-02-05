@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth";
 import { listOrders, getStatusValues } from "./apiAdmin";
 import moment from "moment";
-import Menu from "../core/Menu";
 import { useHistory, Link } from "react-router-dom";
 import "../assets/css/Orders.css";
 import Loader2 from "../Loader/Loader2";
@@ -69,7 +68,6 @@ const Orders = () => {
 		//   className="container-fluid"
 		// >
 		<>
-			<Menu />
 			<div class="row justify-content-center rowOrders">
 				<div class="shadowOrders Ordersbox p-3">
 					<br />

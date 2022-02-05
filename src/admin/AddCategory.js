@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { isAuthenticated } from "../auth";
 import { createCategory } from "./apiAdmin";
-import Menu from "../core/Menu";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import "../assets/css/AddCategory.css";
 
@@ -91,7 +90,6 @@ const AddCategory = () => {
 
 		<div class="row justify-content-center rowAddCategory">
 			<div class="AddCategorybox shadowAddCategory p-3">
-				<Menu />
 				<br />
 				<div className="row">
 					<div className="col-md-10 offset-md-1">
