@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
 import { itemTotal } from "./cartHelpers";
@@ -9,6 +9,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import colors from "../constants/colors";
+import "../assets/css/Menu.css";
 
 // console.log(_id);
 const isActive = (history, path) => {
@@ -28,206 +29,129 @@ const Menu = ({ history }) => {
 			user: { _id, name, role },
 		} = isAuthenticated();
 	}
+	const [clicked, setClicked] = useState(false);
+	const handleClick = () => {
+		setClicked(!clicked);
+	};
 	// const firstLetter = name.charAt(0).toUpperCase();
 	return (
-		<div>
-			<Navbar
-				collapseOnSelect
-				expand="md"
-				style={{ backgroundColor: "#2874F0" }}
-				variant="dark"
-				className="py-0"
-				fixed="top"
-			>
-				<Navbar.Brand>
-					<img
-						src={logo}
-						height="30px"
-						style={{ marginBottom: "4px" }}
-						alt="logo"
-					/>
-				</Navbar.Brand>
-				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-				<Navbar.Collapse id="responsive-navbar-nav">
-					<Nav className="mr-auto">
-						<Nav.Link>
-							<Link className="nav-link" style={isActive(history, "/")} to="/">
-								<h6 className="mt-1">Home</h6>
-							</Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link
-								className="nav-link"
-								style={isActive(history, "/shop")}
-								to="/shop"
-							>
-								<h6 className="mt-1">Shop</h6>
-							</Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link
-								className="nav-link"
-								style={isActive(history, "/cart")}
-								to="/cart"
-							>
-								<h6 className="mt-1">
-									<FaShoppingCart
-										fontSize="13px"
-										className="text-center"
-										color="white"
-									/>
-									&nbsp; Cart
-									{itemTotal() !== 0 ? (
-										<sup>
-											<span
-												className="badge badge-pill"
-												style={{ background: "#FF6161" }}
-											>
-												{itemTotal()}
-											</span>
-										</sup>
-									) : null}
-								</h6>
-							</Link>
-						</Nav.Link>
-						{/* <Search /> */}
+		<>
+			<nav className="NavbarItems">
+				<h3 className="navbar-logo">Visual Labs</h3>
+				<div className="menu-icon" onClick={handleClick}>
+					<i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
+				</div>
+				<ul className={clicked ? "nav-menu active" : "nav-menu"}>
+					<Link className="nav-links" style={{ textDecoration: "none" }} to="/">
+						Home
+					</Link>
 
-						{isAuthenticated() && isAuthenticated().user.role === 0 && (
-							<Nav.Link>
-								<Link
-									className="nav-link"
-									style={isActive(history, "/user/dashboard")}
-									to="/user/dashboard"
+					<Link
+						className="nav-links"
+						style={{ textDecoration: "none" }}
+						to="/shop"
+					>
+						Shop
+					</Link>
+
+					<Link
+						className="nav-links"
+						style={{ textDecoration: "none" }}
+						to="/cart"
+					>
+						<FaShoppingCart
+							fontSize="13px"
+							className="text-center"
+							color="white"
+						/>
+						&nbsp; Cart
+						{itemTotal() !== 0 ? (
+							<sup>
+								<span
+									className="badge badge-pill"
+									style={{ background: "#FF6161" }}
 								>
-									<h6 className="mt-1">Dashboard</h6>
-								</Link>
-							</Nav.Link>
-						)}
-						{isAuthenticated() && isAuthenticated().user.role === 1 && (
-							<Nav.Link>
-								<Link
-									className="nav-link"
-									style={isActive(history, "/admin/dashboard")}
-									to="/admin/dashboard"
-								>
-									<h6 className="mt-1">Dashboard</h6>
-								</Link>
-							</Nav.Link>
-						)}
-					</Nav>
-					<Nav>
-						<Form>
-							{/* <Form.Group
-								className="mb-2"
-								controlId="exampleForm.ControlInput1"
+									{itemTotal()}
+								</span>
+							</sup>
+						) : null}
+					</Link>
+
+					{isAuthenticated() && isAuthenticated().user.role === 0 && (
+						<Link
+							className="nav-links"
+							style={{ textDecoration: "none" }}
+							to="/user/dashboard"
+						>
+							Dashboard
+						</Link>
+					)}
+					{isAuthenticated() && isAuthenticated().user.role === 1 && (
+						<Link
+							className="nav-links"
+							style={{ textDecoration: "none" }}
+							to="/admin/dashboard"
+						>
+							Dashboard
+						</Link>
+					)}
+					{/* isAuthenticated() && isAuthenticated().user.role === 0 && (
+						<Link
+							className="nav-links"
+							// to={`/profile/${_id}`}
+						>
+							<OverlayTrigger
+								overlay={<Tooltip id="tooltip-disabled">Profile</Tooltip>}
+								placement="bottom"
 							>
-								<Form.Control type="email" placeholder="name@example.com" />
-							</Form.Group> */}
-						</Form>
-					</Nav>
-					<Nav>
-						{isAuthenticated() && isAuthenticated().user.role === 0 && (
-							<Nav.Link>
-								<Link
-									className="nav-link"
-									style={isActive(history, "/user/dashboard")}
-									// to={`/profile/${_id}`}
-								>
-									<OverlayTrigger
-										overlay={<Tooltip id="tooltip-disabled">Profile</Tooltip>}
-										placement="bottom"
+								<span>
+									<button
+										className="btn btn-sm rounded-circle"
+										style={{
+											backgroundColor: colors["A"],
+											color: "white",
+										}}
 									>
-										<span className="d-inline-block">
-											<button
-												className="btn btn-sm rounded-circle"
-												style={{
-													backgroundColor: colors["A"],
-													color: "white",
-												}}
-											>
-												{/* {firstLetter} */}A
-											</button>
-										</span>
-									</OverlayTrigger>
-								</Link>
-							</Nav.Link>
-						)}
-						{!isAuthenticated() && (
-							<Fragment>
-								<Nav.Link>
-									<Link
-										className="nav-link"
-										style={isActive(history, "/signin")}
-										to="/signin"
-									>
-										<OverlayTrigger
-											overlay={<Tooltip id="tooltip-disabled">Sign in</Tooltip>}
-											placement="bottom"
-										>
-											<span className="d-inline-block">
-												<IoIosLogIn
-													fontSize="30px"
-													className="text-center"
-													color="white"
-												/>
-											</span>
-										</OverlayTrigger>
-									</Link>
-								</Nav.Link>
-								<Nav.Link>
-									<Link
-										className="nav-link"
-										style={isActive(history, "/signup")}
-										to="/signup"
-									>
-										<OverlayTrigger
-											overlay={<Tooltip id="tooltip-disabled">Sign Up</Tooltip>}
-											placement="bottom"
-										>
-											<span className="d-inline-block">
-												<AiOutlineUserAdd
-													fontSize="30px"
-													className="text-center"
-													color="white"
-												/>
-											</span>
-										</OverlayTrigger>
-									</Link>
-								</Nav.Link>
-							</Fragment>
-						)}
-						{isAuthenticated() && (
-							<div>
-								<li className="nav-item mt-2">
-									<span
-										className="nav-link"
-										style={{ cursor: "pointer", color: "#ffffff" }}
-										onClick={() =>
-											signout(() => {
-												history.push("/");
-											})
-										}
-									>
-										<OverlayTrigger
-											overlay={<Tooltip id="tooltip-disabled">Logout</Tooltip>}
-											placement="bottom"
-										>
-											<span className="d-inline-block">
-												<IoIosLogOut
-													fontSize="30px"
-													className="text-center"
-													color="white"
-												/>
-											</span>
-										</OverlayTrigger>
-									</span>
-								</li>
-							</div>
-						)}
-					</Nav>
-				</Navbar.Collapse>
-			</Navbar>
-		</div>
+										  A
+									</button>
+								</span>
+							</OverlayTrigger>
+						</Link>
+					) */}
+
+					{!isAuthenticated() && (
+						<>
+							<Link to="/signin">
+								<button className="btnMenu btn--primary btn--medium">
+									Sign In
+								</button>
+							</Link>
+
+							<Link to="/signup">
+								<button className="btnMenu btn--primary btn--medium">
+									Sign Up
+								</button>
+							</Link>
+						</>
+					)}
+					{isAuthenticated() && (
+						<div>
+							<span
+								onClick={() =>
+									signout(() => {
+										history.push("/");
+									})
+								}
+							>
+								<button className="btnMenu btn--primary btn--medium">
+									Logout
+								</button>
+							</span>
+						</div>
+					)}
+				</ul>
+			</nav>
+		</>
 	);
 };
 
