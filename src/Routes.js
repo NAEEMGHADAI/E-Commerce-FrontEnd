@@ -19,6 +19,7 @@ import UpdateProduct from "./admin/UpdateProduct";
 import PlaceOrder from "./core/PlaceOrder";
 import OrderDetails from "./user/OrderDetails";
 import Menu from "./core/Menu";
+import Footer from "./core/Footer/Footer";
 
 const Routes = () => {
 	return (
@@ -50,6 +51,7 @@ const Routes = () => {
 					component={OrderDetails}
 				/>
 			</Switch>
+			<Footer />
 		</BrowserRouter>
 	);
 };
