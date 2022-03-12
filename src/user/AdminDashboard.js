@@ -59,7 +59,7 @@ const AdminDashboard = () => {
 						</Tab>
 					</Tabs>
 				</div> */}
-				<div className="container-fluid pt-5">
+				<div className="container-fluid pt-2">
 					<Tab.Container id="left-tabs-example" defaultActiveKey="Orders">
 						<Row>
 							<Col sm={3}>
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
 	return (
 		<>
 			<br />
-			<div className="row pt-5">
+			<div className="row pt-1">
 				<div className="col-md-12 col-12">{adminLinks()}</div>
 				{/* <div className="col-9">{adminInfo()}</div> */}
 			</div>

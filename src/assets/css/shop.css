@@ -52,7 +52,7 @@
 	padding: 0;
 	width: 270px;
 	position: fixed;
-	margin-top: 60px;
+	margin-top: 10px;
 	height: 100%;
 	overflow: auto;
 }
@@ -104,6 +104,6 @@ div.content {
 		margin-left: auto;
 		margin-right: auto;
 		width: 16rem;
-		height: 60vh;
+		height: 100vh;
 	}
 }

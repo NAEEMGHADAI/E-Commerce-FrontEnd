@@ -169,7 +169,7 @@ const Shop = () => {
 		//   descripton="Search & Find Products of your Choice."
 		//   className="container-fluid"
 		// >
-		<div className="pt-5">
+		<div className="pt-2">
 			<h3 className="pl-3 pt-3 text-center d-block d-sm-none">
 				Products <hr />
 			</h3>
@@ -191,13 +191,13 @@ const Shop = () => {
 							</button>
 						</div>
 					</div>
-					<hr />
+					<br />
 					<div className="sidebar">
 						<div className="rowFilter justify-content-center">
 							{showAndHide ? (
 								<div className="shadowFilter Filterbox">
 									<h5 className="text-center">Filter By Category</h5>
-									<ul>
+									<ul className="ml-5">
 										<Checkbox
 											categories={categories}
 											handleFilters={(filters) =>

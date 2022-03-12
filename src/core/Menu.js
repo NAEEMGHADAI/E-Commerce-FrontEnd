@@ -1,39 +1,37 @@
-import React, { Fragment, useState } from "react";
-import { Link, withRouter, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { withRouter, NavLink } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
 import { itemTotal } from "./cartHelpers";
-import { Navbar, Nav, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
-import logo from "../assets/img/Logo/logo-3.png";
-import { IoIosLogIn } from "react-icons/io";
-import { IoIosLogOut } from "react-icons/io";
-import { AiOutlineUserAdd } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
-import colors from "../constants/colors";
-
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { GiHamburgerMenu } from "react-icons/gi";
-
+import colors from "../constants/colors";
 import "../assets/css/Menu.css";
 
 // console.log(_id);
-const isActive = (history, path) => {
-	if (history.location.pathname === path) {
-		return {
-			color: "#FFFFFF",
-			border: "2px #add8e6",
-		};
-	} else {
-		return { color: "#FFFFFF" };
-	}
-};
 
 const Menu = ({ history }) => {
+	const [showMediaIcons, setShowMediaIcons] = useState(false);
+	let firstLetter = "";
+	let id = "";
 	if (isAuthenticated()) {
 		const {
 			user: { _id, name, role },
 		} = isAuthenticated();
+		firstLetter = name;
+		id = _id;
 	}
-	const [showMediaIcons, setShowMediaIcons] = useState(false);
-	// const firstLetter = name.charAt(0).toUpperCase();
+	console.log("isAuth: ", isAuthenticated());
+	// const [firstLetter, setFirstLetter] = useState("");
+	// console.log("name:", name);
+	// const val = name.charAt(0).toUpperCase();
+	// setFirstLetter(val);
+	// console.log(_id);
+	// if (_id != undefined) {
+	// 	let id = _id;
+	// }
+
+	console.log("isAuth: ", isAuthenticated());
 	return (
 		<>
 			<nav className="main-nav" style={{ fontSize: "60px" }}>
@@ -95,7 +93,7 @@ const Menu = ({ history }) => {
 									<NavLink to="/signin">
 										<button
 											style={{ background: "#2874F0", borderRadius: "10%" }}
-											className="btn text-white"
+											className="btn text-white NavBtns"
 										>
 											Sign In
 										</button>
@@ -105,7 +103,7 @@ const Menu = ({ history }) => {
 									<NavLink to="/signup">
 										<button
 											style={{ background: "#2874F0", borderRadius: "10%" }}
-											className="btn text-white"
+											className="btn text-white NavBtns"
 										>
 											Sign Up
 										</button>
@@ -113,25 +111,48 @@ const Menu = ({ history }) => {
 								</li>
 							</>
 						)}
-
 						<li>
 							{isAuthenticated() && (
-								<div>
-									<span
-										onClick={() =>
-											signout(() => {
-												history.push("/");
-											})
-										}
-									>
-										<button
-											style={{ background: "#2874F0", borderRadius: "10%" }}
-											className="btn text-white"
+								<>
+									<NavLink to={`/profile/${id}`}>
+										<OverlayTrigger
+											overlay={<Tooltip id="tooltip-disabled">Profile</Tooltip>}
+											placement="bottom"
 										>
-											Logout
-										</button>
-									</span>
-								</div>
+											<span className="d-inline-block">
+												<button
+													className="btn rounded-circle"
+													style={{
+														backgroundColor:
+															colors[firstLetter.charAt(0).toUpperCase()],
+														color: "white",
+													}}
+												>
+													{firstLetter.charAt(0).toUpperCase()}
+												</button>
+											</span>
+										</OverlayTrigger>
+									</NavLink>
+									<div>
+										<span
+											onClick={() =>
+												signout(() => {
+													history.push("/");
+												})
+											}
+										>
+											<button
+												style={{
+													background: "#2874F0",
+													borderRadius: "10%",
+												}}
+												className="btn text-white NavBtns"
+											>
+												Logout
+											</button>
+										</span>
+									</div>
+								</>
 							)}
 						</li>
 					</ul>
@@ -139,8 +160,8 @@ const Menu = ({ history }) => {
 
 				{/* 3rd social media links */}
 				<div className="social-media">
-					{/* <ul className="social-media-desktop">
-						<li>
+					<ul className="social-media-desktop">
+						{/* <li>
 							<a
 								href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
 								target="_thapa"
@@ -163,8 +184,55 @@ const Menu = ({ history }) => {
 							>
 								<FaYoutubeSquare className="youtube" />
 							</a>
+						</li> */}
+						{!isAuthenticated() && (
+							<>
+								<li>
+									<NavLink to="/signin">
+										<button
+											style={{ background: "#2874F0", borderRadius: "10%" }}
+											className="btn text-white"
+										>
+											Sign In
+										</button>
+									</NavLink>
+								</li>
+								<li>
+									<NavLink to="/signup">
+										<button
+											style={{ background: "#2874F0", borderRadius: "10%" }}
+											className="btn text-white"
+										>
+											Sign Up
+										</button>
+									</NavLink>
+								</li>
+							</>
+						)}
+						<li>
+							{isAuthenticated() && (
+								<div>
+									<span
+										onClick={() =>
+											signout(() => {
+												history.push("/");
+											})
+										}
+									>
+										<button
+											style={{
+												background: "#2874F0",
+												borderRadius: "10%",
+											}}
+											className="btn text-white "
+										>
+											Logout
+										</button>
+									</span>
+								</div>
+							)}
 						</li>
-					</ul> */}
+					</ul>
 
 					{/* hamburget menu start  */}
 					<div className="hamburger-menu">

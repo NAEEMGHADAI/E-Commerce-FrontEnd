@@ -148,16 +148,18 @@ const Dashboard = () => {
 								</button>
 							</div>
 							<div className="col-md-5 col-12">
-								<button
-									className="btn"
-									style={{
-										margin: "4px 0px",
-										borderRadius: "16px",
-										padding: "10px 20px",
-									}}
-								>
-									Update Profile
-								</button>
+								<Link to={`/profile/${_id}`}>
+									<button
+										className="btn"
+										style={{
+											margin: "4px 0px",
+											borderRadius: "16px",
+											padding: "10px 20px",
+										}}
+									>
+										Update Profile
+									</button>
+								</Link>
 							</div>
 							<div className="col-md-2 col-12">
 								<button

@@ -212,6 +212,9 @@ li {
 	justify-content: start;
 	align-items: center;
 }
+.NavBtns {
+	display: none;
+}
 
 .menu-link {
 	grid-column: 3/4;
@@ -280,6 +283,7 @@ li {
 
 .social-media ul li {
 	font-size: 1.3rem;
+	margin-left: 40px;
 }
 
 .social-media .hamburger-menu {
@@ -331,6 +335,9 @@ li {
 	.menu-link ul,
 	.social-media ul {
 		height: 7rem;
+	}
+	.NavBtns {
+		margin-left: 0;
 	}
 }
 
@@ -404,6 +411,9 @@ li {
 	.social-media .hamburger-menu {
 		display: block;
 		font-size: 2.5rem;
+	}
+	.NavBtns {
+		display: block;
 	}
 }
 
