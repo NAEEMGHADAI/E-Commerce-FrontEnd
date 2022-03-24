@@ -210,26 +210,6 @@ const AddProduct = () => {
 		);
 
 	return (
-		// <>
-		// 	{/* <Layout title="Add a new product." descripton={`G'DAY ${user.name} , Ready to Add A New Product?`}> */}
-		// 	<Menu />
-		// 	<br />
-
-		// 	<div className="row ">
-		// 		<div className="col-md-8 offset-md-2">
-		// 			<h5 className="pl-0">
-		// 				Good Day {user.name} , Ready to Add A New Product?
-		// 			</h5>
-		// 			<hr />
-		// 			{showLoading()}
-		// 			{showSuccess()}
-		// 			{showError()}
-		// 			{newPostForm()}
-		// 		</div>
-		// 	</div>
-
-		// 	{/* </Layout> */}
-		// </>
 		<div class="row justify-content-center rowAddProduct">
 			<div class="AddProductbox shadowAddProduct p-3">
 				<br />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../../auth";
 import { getPurchaseHistory } from "../apiUser";
 import moment from "moment";
-import "../../assets/css/PurchaseHistory.css";
+import "./PurchaseHistory.css";
 
 const PurchaseHistory = () => {
 	const [history, setHistory] = useState([]);

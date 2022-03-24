@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/img/Logo/Visual-Labs-Logo.png";
 import "./Footer.css";
 
@@ -77,10 +78,10 @@ function Footer() {
 										<a href="/">Home</a>
 									</li>
 									<li>
-										<a href="/">Shop</a>
+										<a href="/shop">Shop</a>
 									</li>
 									<li>
-										<a href="/">Cart</a>
+										<a href="/cart">Cart</a>
 									</li>
 									<li>
 										<a href="/">About Us</a>
@@ -106,6 +107,17 @@ function Footer() {
 											<i className="fab fa-telegram-plane"></i>
 										</button>
 									</form>
+								</div>
+							</div>
+							<div className="footer-widget pt-5">
+								<div className="footer-widget-heading">
+									<h3>Seller Registration</h3>
+								</div>
+								<div className="footer-text">
+									<p>
+										To Sell Your Product on Our Website, Resgister Yourself
+										<Link to="/seller"> Here</Link>
+									</p>
 								</div>
 							</div>
 						</div>

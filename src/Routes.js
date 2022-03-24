@@ -18,6 +18,7 @@ import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import PlaceOrder from "./core/PlaceOrder";
 import OrderDetails from "./user/OrderDetails";
+import SellerRegistration from "./core/SellerRegistration/SellerRegistration";
 import Menu from "./core/Menu";
 import Footer from "./core/Footer/Footer";
 
@@ -32,6 +33,7 @@ const Routes = () => {
 				<Route path="/signin" exact component={Signin} />
 				<Route path="/product/:productId" exact component={Product} />
 				<Route path="/cart" exact component={Cart} />
+				<Route path="/seller" exact component={SellerRegistration} />
 				<Route path="/checkout" exact component={PlaceOrder} />
 				<UserRoute path="/user/dashboard" exact component={Dashboard} />
 				<UserRoute path="/profile/:userId" exact component={Profile} />
