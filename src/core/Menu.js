@@ -21,17 +21,6 @@ const Menu = ({ history }) => {
 		firstLetter = name;
 		id = _id;
 	}
-	console.log("isAuth: ", isAuthenticated());
-	// const [firstLetter, setFirstLetter] = useState("");
-	// console.log("name:", name);
-	// const val = name.charAt(0).toUpperCase();
-	// setFirstLetter(val);
-	// console.log(_id);
-	// if (_id != undefined) {
-	// 	let id = _id;
-	// }
-
-	console.log("isAuth: ", isAuthenticated());
 	return (
 		<>
 			<nav className="main-nav" style={{ fontSize: "60px" }}>

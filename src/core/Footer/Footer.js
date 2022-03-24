@@ -5,7 +5,7 @@ import "./Footer.css";
 function Footer() {
 	return (
 		<footer className="footer-section">
-			<div className="container">
+			<div className="container-fluid px-5">
 				<div className="footer-cta py-5">
 					<div className="row">
 						<div className="col-sm-6 col-xl-4 mb-30">
@@ -39,7 +39,7 @@ function Footer() {
 				</div>
 				<div className="footer-content py-5">
 					<div className="row">
-						<div className="col-lg-4 ">
+						<div className="col-lg-5 ">
 							<div className="footer-widget">
 								<div className="footer-logo">
 									<a href="/">
@@ -67,7 +67,7 @@ function Footer() {
 								</div>
 							</div>
 						</div>
-						<div className="col-lg-4 ">
+						<div className="col-lg-2 ">
 							<div className="footer-widget">
 								<div className="footer-widget-heading">
 									<h3>Useful Links</h3>
@@ -88,7 +88,7 @@ function Footer() {
 								</ul>
 							</div>
 						</div>
-						<div className="col-lg-4 ">
+						<div className="col-lg-5 ">
 							<div className="footer-widget">
 								<div className="footer-widget-heading">
 									<h3>Subscribe</h3>
@@ -113,7 +113,7 @@ function Footer() {
 				</div>
 			</div>
 			<div className="copyright-area">
-				<div className="container">
+				<div className="container-fluid px-5">
 					<div className="row">
 						<div className="col-xl-6 col-lg-6 text-center text-lg-left">
 							<div className="copyright-text">
