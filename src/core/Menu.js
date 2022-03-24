@@ -14,13 +14,20 @@ const Menu = ({ history }) => {
 	const [showMediaIcons, setShowMediaIcons] = useState(false);
 	let firstLetter = "";
 	let id = "";
+	let user = "";
 	if (isAuthenticated()) {
 		const {
 			user: { _id, name, role },
 		} = isAuthenticated();
 		firstLetter = name;
 		id = _id;
+		if (role === 0) {
+			user = "user";
+		} else {
+			user = "admin";
+		}
 	}
+
 	return (
 		<>
 			<nav className="main-nav" style={{ fontSize: "60px" }}>
@@ -66,13 +73,8 @@ const Menu = ({ history }) => {
 							</NavLink>
 						</li>
 						<li>
-							{isAuthenticated() && isAuthenticated().user.role === 0 && (
-								<NavLink to="/user/dashboard">Dashboard</NavLink>
-							)}
-						</li>
-						<li>
-							{isAuthenticated() && isAuthenticated().user.role === 1 && (
-								<NavLink to="/user/dashboard">Dashboard</NavLink>
+							{isAuthenticated() && (
+								<NavLink to={`/${user}/dashboard`}>Dashboard</NavLink>
 							)}
 						</li>
 

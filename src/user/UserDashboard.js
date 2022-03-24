@@ -1,33 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { isAuthenticated } from "../auth";
-import { Link } from "react-router-dom";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { getPurchaseHistory } from "./apiUser";
-import moment from "moment";
-import colors from "../constants/colors";
+import { Tab, Row, Col, Nav } from "react-bootstrap";
 import "../assets/css/UserDashboard.css";
+import PurchaseHistory from "./UserInfo/PurchaseHistory";
 
 const Dashboard = () => {
-	const [history, setHistory] = useState([]);
-
 	const {
-		user: { _id, name, role },
+		user: { name, role },
 	} = isAuthenticated();
 	const token = isAuthenticated().token;
-
-	const init = (userId, token) => {
-		getPurchaseHistory(userId, token).then((data) => {
-			if (data.error) {
-				console.log(data.error);
-			} else {
-				setHistory(data);
-			}
-		});
-	};
-
-	useEffect(() => {
-		init(_id, token);
-	}, []);
 
 	// const userLinks = () => {
 	// 	return (
@@ -64,36 +45,41 @@ const Dashboard = () => {
 	// 	);
 	// };
 
-	const purchaseHistory = (history) => {
-		console.log(history);
+	const userLinks = () => {
 		return (
-			<div className="card mb-5">
-				<h3 className="card-header">Purchase history</h3>
-				<ul className="list-group">
-					<li className="list-group-item">
-						{history.map((h, i) => {
-							return (
-								<div>
-									<hr />
-									{h.products.map((p, i) => {
-										return (
-											<div key={i}>
-												<h6>Product name: {p.name}</h6>
-												<h6>Product price: ${p.price}</h6>
-											</div>
-										);
-									})}
-									<h6>Purchased date: {moment(h.createdAt).fromNow()}</h6>
-								</div>
-							);
-						})}
-						{/* {JSON.stringify(history)} */}
-					</li>
-				</ul>
-			</div>
+			<>
+				<div className="container-fluid pt-2">
+					<div className="text-center">
+						<h3>Welcome, {name}</h3>
+						<p>{role === 1 ? "Admin" : "Registered User"}</p>
+					</div>
+					<Tab.Container
+						id="left-tabs-example"
+						defaultActiveKey="PurchaseHistory"
+					>
+						<Row>
+							<Col sm={3}>
+								<Nav variant="pills" className="flex-column">
+									<Nav.Item>
+										<Nav.Link eventKey="PurchaseHistory">
+											Purchase History
+										</Nav.Link>
+									</Nav.Item>
+								</Nav>
+							</Col>
+							<Col sm={9}>
+								<Tab.Content>
+									<Tab.Pane eventKey="PurchaseHistory">
+										<PurchaseHistory />
+									</Tab.Pane>
+								</Tab.Content>
+							</Col>
+						</Row>
+					</Tab.Container>
+				</div>
+			</>
 		);
 	};
-	const firstLetter = name.charAt(0).toUpperCase();
 	// description={`G'day ${name}!`}
 	return (
 		// <Layout
@@ -103,84 +89,8 @@ const Dashboard = () => {
 		// >
 		<>
 			<br />
-			<div class="row justify-content-center rowUser">
-				<div class="Userbox shadowUser p-4">
-					<div className="row">
-						<div className="col-md-11 col-9">
-							<h5 className="">Hello, {name}</h5>
-							<small> {role === 1 ? "Admin" : "Registered User"}</small>
-						</div>
-						<div className="col-md-1 col-3">
-							<Link to={`/profile/${_id}`}>
-								<OverlayTrigger
-									overlay={<Tooltip id="tooltip-disabled">Profile</Tooltip>}
-									placement="bottom"
-								>
-									<span className="d-inline-block">
-										<button
-											className="btn rounded-circle"
-											style={{
-												backgroundColor: colors[firstLetter],
-												color: "white",
-											}}
-										>
-											{firstLetter}
-										</button>
-									</span>
-								</OverlayTrigger>
-							</Link>
-						</div>
-					</div>
-
-					<hr />
-					<div className="container">
-						<div className="row">
-							<div className="col-md-5 col-12">
-								<button
-									className="btn"
-									style={{
-										margin: "4px 0px",
-										borderRadius: "16px",
-										padding: "10px 20px",
-									}}
-								>
-									Your Orders
-								</button>
-							</div>
-							<div className="col-md-5 col-12">
-								<Link to={`/profile/${_id}`}>
-									<button
-										className="btn"
-										style={{
-											margin: "4px 0px",
-											borderRadius: "16px",
-											padding: "10px 20px",
-										}}
-									>
-										Update Profile
-									</button>
-								</Link>
-							</div>
-							<div className="col-md-2 col-12">
-								<button
-									className="btn"
-									style={{
-										margin: "4px 0px",
-										borderRadius: "16px",
-										padding: "10px 20px",
-									}}
-								>
-									Your Account
-								</button>
-							</div>
-
-							<div className="col-12">
-								<hr />
-								{purchaseHistory(history)}
-							</div>
-						</div>
-					</div>
-				</div>
+			<div className="row pt-1">
+				<div className="col-md-12 col-12">{userLinks()}</div>
 			</div>
 		</>
 		// </Layout>
