@@ -35,6 +35,7 @@ const Orders = () => {
 			}
 		});
 	};
+	console.log(statusValues);
 
 	useEffect(() => {
 		loadOrders();
@@ -80,6 +81,30 @@ const Orders = () => {
 							) : (
 								<>
 									{showOrdersLength()}
+									<div className="container">
+										<form className="RadioForm">
+											<label className="RadioLabel pr-1">
+												<input type="radio" name="radio" />
+												<span>Not Processed</span>
+											</label>
+											<label className="RadioLabel pr-1">
+												<input type="radio" name="radio" />
+												<span>Processing</span>
+											</label>
+											<label className="RadioLabel pr-1">
+												<input type="radio" name="radio" />
+												<span>Shipped</span>
+											</label>
+											<label className="RadioLabel pr-1">
+												<input type="radio" name="radio" />
+												<span>Delivered</span>
+											</label>
+											<label className="RadioLabel pr-1">
+												<input type="radio" name="radio" />
+												<span>Canceled</span>
+											</label>
+										</form>
+									</div>
 									<hr />
 
 									<div class="table-responsive">
