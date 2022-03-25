@@ -7,6 +7,7 @@ import AddProduct from "../admin/AddProduct";
 import AddCategory from "../admin/AddCategory";
 import Orders from "../admin/Orders";
 import ManageProducts from "../admin/ManageProducts";
+import SellerApi from "./UserInfo/SellerApi";
 
 const Dashboard = () => {
 	const {
@@ -35,6 +36,9 @@ const Dashboard = () => {
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
+										<Nav.Link eventKey="SellerApi">Seller Api</Nav.Link>
+									</Nav.Item>
+									<Nav.Item>
 										<Nav.Link eventKey="AddProduct">Add Product</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
@@ -54,6 +58,9 @@ const Dashboard = () => {
 									</Tab.Pane>
 									<Tab.Pane eventKey="ManageProducts">
 										<ManageProducts />
+									</Tab.Pane>
+									<Tab.Pane eventKey="SellerApi">
+										<SellerApi />
 									</Tab.Pane>
 									<Tab.Pane eventKey="AddProduct">
 										<AddProduct />

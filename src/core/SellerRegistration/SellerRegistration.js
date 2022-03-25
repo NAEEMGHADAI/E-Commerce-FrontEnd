@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { AiOutlinePlusCircle } from "react-icons/ai";
-
 const SellerRegistration = () => {
 	const [values, setValues] = useState({
 		fname: "",
@@ -27,25 +25,6 @@ const SellerRegistration = () => {
 	const clickSubmit = (event) => {
 		event.preventDefault();
 		setValues({ ...values, error: "", loading: true });
-
-		// createProduct(user._id, token, formData).then((data) => {
-		// 	if (data.error) {
-		// 		setValues({ ...values, error: data.error });
-		// 	} else {
-		// 		setValues({
-		// 			...values,
-		// 			name: "",
-		// 			description: "",
-		// 			photo: "",
-		// 			price: "",
-		// 			quantity: "",
-		// 			loading: false,
-		// 			createdProduct: data.name,
-		// 			expectedDeliveryDate: "",
-		// 		});
-		// 	}
-		// 	console.log(values);
-		// });
 	};
 
 	const newPostForm = () => (
@@ -124,14 +103,14 @@ const SellerRegistration = () => {
 		</form>
 	);
 
-	const showError = () => (
-		<div
-			className="alert alert-danger"
-			style={{ display: error ? "" : "none" }}
-		>
-			{error}
-		</div>
-	);
+	// const showError = () => (
+	// 	<div
+	// 		className="alert alert-danger"
+	// 		style={{ display: error ? "" : "none" }}
+	// 	>
+	// 		{error}
+	// 	</div>
+	// );
 
 	// const showSuccess = () => (
 	// 	<div
