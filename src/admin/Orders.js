@@ -12,6 +12,7 @@ const Orders = () => {
 	const [loading, setLoading] = useState(false);
 	const history = useHistory();
 	const { user, token } = isAuthenticated();
+	let [status, setStatus] = useState("All");
 
 	const loadOrders = () => {
 		setLoading(true);
@@ -54,6 +55,10 @@ const Orders = () => {
 		}
 	};
 
+	// const statusChange = (state) => {
+	// 	return setStatus(state);
+	// };
+
 	const OrderDetail = (id) => {
 		history.push({
 			pathname: `/admin/dashboard/${id}`,
@@ -62,6 +67,7 @@ const Orders = () => {
 			},
 		});
 	};
+	console.log(status);
 	return (
 		// <Layout
 		//   title="Orders"
@@ -84,24 +90,52 @@ const Orders = () => {
 									<div className="container">
 										<form className="RadioForm">
 											<label className="RadioLabel pr-1">
-												<input type="radio" name="radio" />
+												<input
+													type="radio"
+													name="radio"
+													onClick={() => setStatus("All")}
+												/>
+												<span>All</span>
+											</label>
+											<label className="RadioLabel pr-1">
+												<input
+													type="radio"
+													name="radio"
+													onClick={() => setStatus("Not processed")}
+												/>
 												<span>Not Processed</span>
 											</label>
 											<label className="RadioLabel pr-1">
-												<input type="radio" name="radio" />
+												<input
+													type="radio"
+													name="radio"
+													onClick={() => setStatus("Processing")}
+												/>
 												<span>Processing</span>
 											</label>
 											<label className="RadioLabel pr-1">
-												<input type="radio" name="radio" />
+												<input
+													type="radio"
+													name="radio"
+													onClick={() => setStatus("Shipped")}
+												/>
 												<span>Shipped</span>
 											</label>
 											<label className="RadioLabel pr-1">
-												<input type="radio" name="radio" />
+												<input
+													type="radio"
+													name="radio"
+													onClick={() => setStatus("Delivered")}
+												/>
 												<span>Delivered</span>
 											</label>
 											<label className="RadioLabel pr-1">
-												<input type="radio" name="radio" />
-												<span>Canceled</span>
+												<input
+													type="radio"
+													name="radio"
+													onClick={() => setStatus("Cancelled")}
+												/>
+												<span>Cancelled</span>
 											</label>
 										</form>
 									</div>
@@ -120,45 +154,95 @@ const Orders = () => {
 											</thead>
 											<tbody>
 												{orders.map((o, oIndex) => (
-													<tr>
-														<td key={oIndex}>
-															<Link
-																className="productLink"
-																onClick={() => OrderDetail(o._id)}
-																style={{ textDecoration: "none" }}
-															>
-																<span className="font-weight-normal">
-																	{o._id}
-																</span>
-															</Link>
-														</td>
-														<td>
-															<span className="font-weight-normal">
-																{moment(o.createdAt).fromNow()}
-															</span>
-														</td>
-														<td>
-															<span className="font-weight-normal">
-																{o.user.name}
-															</span>
-														</td>
-														<td>
-															{o.status === "Update Status" ? (
-																<span className="font-weight-normal">
-																	Not set
-																</span>
-															) : (
-																<span className="font-weight-normal">
-																	{o.status}
-																</span>
-															)}
-														</td>
-														<td>
-															<span className="font-weight-normal text-success ml-5">
-																{o.products.length}
-															</span>
-														</td>
-													</tr>
+													<>
+														{o.status === status ? (
+															<tr>
+																<td key={oIndex}>
+																	<Link
+																		className="productLink"
+																		onClick={() => OrderDetail(o._id)}
+																		style={{ textDecoration: "none" }}
+																	>
+																		<span className="font-weight-normal">
+																			{o._id}
+																		</span>
+																	</Link>
+																</td>
+																<td>
+																	<span className="font-weight-normal">
+																		{moment(o.createdAt).fromNow()}
+																	</span>
+																</td>
+																<td>
+																	<span className="font-weight-normal">
+																		{o.user.name}
+																	</span>
+																</td>
+																<td>
+																	{o.status === "Update Status" ? (
+																		<span className="font-weight-normal">
+																			Not set
+																		</span>
+																	) : (
+																		<span className="font-weight-normal">
+																			{o.status}
+																		</span>
+																	)}
+																</td>
+																<td>
+																	<span className="font-weight-normal text-success ml-5">
+																		{o.products.length}
+																	</span>
+																</td>
+															</tr>
+														) : (
+															<>
+																{status === "All" ? (
+																	<tr>
+																		<td key={oIndex}>
+																			<Link
+																				className="productLink"
+																				onClick={() => OrderDetail(o._id)}
+																				style={{ textDecoration: "none" }}
+																			>
+																				<span className="font-weight-normal">
+																					{o._id}
+																				</span>
+																			</Link>
+																		</td>
+																		<td>
+																			<span className="font-weight-normal">
+																				{moment(o.createdAt).fromNow()}
+																			</span>
+																		</td>
+																		<td>
+																			<span className="font-weight-normal">
+																				{o.user.name}
+																			</span>
+																		</td>
+																		<td>
+																			{o.status === "Update Status" ? (
+																				<span className="font-weight-normal">
+																					Not set
+																				</span>
+																			) : (
+																				<span className="font-weight-normal">
+																					{o.status}
+																				</span>
+																			)}
+																		</td>
+																		<td>
+																			<span className="font-weight-normal text-success ml-5">
+																				{o.products.length}
+																			</span>
+																		</td>
+																	</tr>
+																) : (
+																	<></>
+																)}
+															</>
+														)}
+													</>
 												))}
 											</tbody>
 										</table>
