@@ -5,7 +5,6 @@ import moment from "moment";
 import { useHistory, Link } from "react-router-dom";
 import "../assets/css/Orders.css";
 import Loader2 from "../Loader/Loader2";
-import sortButton from "../../src/assets/img/sort/icons8-sort.png";
 import { BiSort } from "react-icons/bi";
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
