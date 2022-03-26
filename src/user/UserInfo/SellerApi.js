@@ -41,7 +41,7 @@ const SellerApi = () => {
 							<input
 								type="text"
 								className="form-control"
-								value={`GET: https://ecommercewebsite7863.herokuapp.com/api/product/create/${_id}`}
+								value={`POST: https://ecommercewebsite7863.herokuapp.com/api/product/create/${_id}`}
 								disabled
 							/>
 						</div>
@@ -50,7 +50,7 @@ const SellerApi = () => {
 							<input
 								type="text"
 								className="form-control"
-								value={`GET: https://ecommercewebsite7863.herokuapp.com/api/category/create/${_id}`}
+								value={`POST: https://ecommercewebsite7863.herokuapp.com/api/category/create/${_id}`}
 								disabled
 							/>
 						</div>

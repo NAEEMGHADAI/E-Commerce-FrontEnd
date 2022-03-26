@@ -3,6 +3,7 @@ import { isAuthenticated } from "../auth";
 import { Link, useHistory } from "react-router-dom";
 import { getProducts, deleteProduct } from "./apiAdmin";
 import moment from "moment";
+import { BiSort } from "react-icons/bi";
 import "../assets/css/ManageProduct.css";
 
 const ManageProducts = () => {
@@ -18,6 +19,11 @@ const ManageProducts = () => {
 				setProducts(data);
 			}
 		});
+	};
+
+	const reverseArr = (arr) => {
+		const revArr = arr.reverse();
+		return revArr;
 	};
 
 	const destroy = (productId) => {
@@ -49,7 +55,20 @@ const ManageProducts = () => {
 				<div class="ManageProductbox shadowManageProduct p-3">
 					<div className="row">
 						<div className="col-12">
-							<h5 className=" ml-2">Manage Products ({products.length})</h5>
+							<h5 className=" ml-2">
+								Manage Products ({products.length})
+								<button
+									className="btn btn-primary"
+									style={{ borderRadius: "10%", marginLeft: "55%" }}
+									onClick={() => {
+										var newProducts = products;
+										setProducts(reverseArr([...newProducts]));
+									}}
+								>
+									Sort By Date
+									<BiSort style={{ paddingTop: "6px" }} size="18" />
+								</button>
+							</h5>
 							<br />
 							{/* {products.map((p, i) => {
 								const data = {

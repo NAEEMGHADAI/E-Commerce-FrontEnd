@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../../auth";
 import { getPurchaseHistory } from "../apiUser";
 import moment from "moment";
+import { BiSort } from "react-icons/bi";
 import "./PurchaseHistory.css";
 
 const PurchaseHistory = () => {
@@ -20,13 +21,32 @@ const PurchaseHistory = () => {
 		});
 	};
 
+	const reverseArr = (arr) => {
+		const revArr = arr.reverse();
+		return revArr;
+	};
+
 	useEffect(() => {
 		init(_id, token);
 	}, []);
 	return (
 		<div className="row justify-content-center rowPurchaseHistory">
 			<div className="purchaseHistoryBox shadowPurchaseHistory p-3">
-				<h3 className="">Purchase history</h3>
+				<h3 className="">
+					Purchase history{" "}
+					<button
+						className="btn btn-primary"
+						style={{ borderRadius: "10%", marginLeft: "50%" }}
+						onClick={() => {
+							var newHistory = history;
+							setHistory(reverseArr([...newHistory]));
+						}}
+					>
+						Sort By Date
+						<BiSort style={{ paddingTop: "6px" }} size="18" />
+					</button>
+				</h3>
+
 				<div class="table-responsive">
 					<table class="table  table-hover">
 						<thead className="table-primary">

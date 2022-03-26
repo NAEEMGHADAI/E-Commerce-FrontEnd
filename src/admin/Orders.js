@@ -6,9 +6,9 @@ import { useHistory, Link } from "react-router-dom";
 import "../assets/css/Orders.css";
 import Loader2 from "../Loader/Loader2";
 import { BiSort } from "react-icons/bi";
+
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
-	const [rev, setRev] = useState("");
 	const [statusValues, setStatusValues] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const history = useHistory();
