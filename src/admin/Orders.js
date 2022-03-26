@@ -5,9 +5,11 @@ import moment from "moment";
 import { useHistory, Link } from "react-router-dom";
 import "../assets/css/Orders.css";
 import Loader2 from "../Loader/Loader2";
-
+import sortButton from "../../src/assets/img/sort/icons8-sort.png";
+import { BiSort } from "react-icons/bi";
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
+	const [rev, setRev] = useState("");
 	const [statusValues, setStatusValues] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const history = useHistory();
@@ -36,7 +38,6 @@ const Orders = () => {
 			}
 		});
 	};
-	console.log(statusValues);
 
 	useEffect(() => {
 		loadOrders();
@@ -55,9 +56,10 @@ const Orders = () => {
 		}
 	};
 
-	// const statusChange = (state) => {
-	// 	return setStatus(state);
-	// };
+	const reverseArr = (arr) => {
+		const revArr = arr.reverse();
+		return revArr;
+	};
 
 	const OrderDetail = (id) => {
 		history.push({
@@ -67,7 +69,7 @@ const Orders = () => {
 			},
 		});
 	};
-	console.log(status);
+
 	return (
 		// <Layout
 		//   title="Orders"
@@ -138,6 +140,17 @@ const Orders = () => {
 												<span>Cancelled</span>
 											</label>
 										</form>
+										<button
+											className="btn btn-primary"
+											style={{ borderRadius: "10%", marginLeft: "40%" }}
+											onClick={() => {
+												var newOrders = orders;
+												setOrders(reverseArr([...newOrders]));
+											}}
+										>
+											Sort By Date
+											<BiSort style={{ paddingTop: "6px" }} size="18" />
+										</button>
 									</div>
 									<hr />
 
