@@ -171,7 +171,7 @@ const CardDetails = ({
 							<br />
 						</span>
 
-						<span className="font-weight-normal">${product.price}</span>
+						<span className="font-weight-normal">₹{product.price}</span>
 						<br />
 						<span className="font-weight-light">
 							Delivery Charges: <span style={{ color: "green" }}>FREE</span>

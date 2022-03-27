@@ -160,7 +160,7 @@ export default function OrderDetails() {
 																<span className="text-secondary">
 																	Total Amount: &nbsp;
 																</span>
-																${o.amount}
+																₹{o.amount}
 															</li>
 														</ul>
 													</div>
@@ -203,7 +203,7 @@ export default function OrderDetails() {
 															<span className="font-italic mr-4">
 																Total Amount:
 															</span>
-															${o.amount}
+															₹{o.amount}
 														</div>
 													</div>
 													<div className="col-md-1"></div>

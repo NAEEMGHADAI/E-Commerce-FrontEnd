@@ -98,7 +98,7 @@ export default function CartItem({ product, handleRefresh }) {
 					</p>
 					<br />
 					<h5 className="pl-2">
-						${product.price * product.count} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						₹{product.price * product.count} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						&nbsp;
 						{showRemoveButton(product)}
 					</h5>

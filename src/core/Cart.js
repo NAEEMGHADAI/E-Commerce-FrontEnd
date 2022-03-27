@@ -94,7 +94,7 @@ const Cart = ({ history }) => {
 					<p>
 						Price ({`${items.length}`} items): &nbsp; &nbsp; &nbsp; &nbsp;
 						&nbsp; &nbsp; &nbsp;
-						<span className="float-sm-right">${getTotal(items)}</span>
+						<span className="float-sm-right">₹{getTotal(items)}</span>
 					</p>
 					<p>
 						Delivery Charges: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -105,7 +105,7 @@ const Cart = ({ history }) => {
 					<hr />
 					<h5>
 						Total Amount: &nbsp; &nbsp; &nbsp;
-						<span className="float-sm-right">${getTotal(items)}</span>
+						<span className="float-sm-right">₹{getTotal(items)}</span>
 					</h5>
 				</div>
 			</div>

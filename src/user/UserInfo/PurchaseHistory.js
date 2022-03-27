@@ -64,7 +64,7 @@ const PurchaseHistory = () => {
 											return (
 												<tr>
 													<td> {p.name}</td>
-													<td> ${p.price}</td>
+													<td> ₹{p.price}</td>
 													<td>{moment(h.createdAt).fromNow()}</td>
 												</tr>
 											);

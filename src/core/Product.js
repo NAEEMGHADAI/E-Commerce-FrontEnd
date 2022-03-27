@@ -137,7 +137,7 @@ const Product = (props) => {
 										<h6 className="text-muted">Description</h6>
 										<p>{product.description}</p>
 										<h6 className="text-muted">Price </h6>{" "}
-										<p>${product.price}</p>
+										<p>₹{product.price}</p>
 										<h6 className="text-muted">Status</h6>
 										<p>{showStock(product.quantity)}</p>
 										{isAuthenticated() && isAuthenticated().user.role === 1 && (

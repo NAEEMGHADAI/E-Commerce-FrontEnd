@@ -203,7 +203,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
 
 	return (
 		<div>
-			<h4 className="text-center">Total: ${getTotal()}</h4>
+			<h4 className="text-center">Total: ₹{getTotal()}</h4>
 			{showLoading(data.loading)}
 			{showSuccess(data.success)}
 			{showError(data.error)}
