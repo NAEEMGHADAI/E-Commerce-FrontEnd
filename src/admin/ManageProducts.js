@@ -61,6 +61,10 @@ const ManageProducts = () => {
 								<button
 									className="btn btn-primary"
 									style={{ borderRadius: "10%", marginLeft: "55%" }}
+									onClick={() => {
+										var newProducts = products;
+										setProducts(reverseArr([...newProducts]));
+									}}
 								>
 									Sort By Date
 									<BiSort style={{ paddingTop: "6px" }} size="18" />
@@ -70,7 +74,7 @@ const ManageProducts = () => {
 								<div className="col-md-9 col-6">
 									<Link to={`/create/product`}>
 										<button
-											className="btn btn-outline-primary"
+											className="btn btn-outline-primary addPro"
 											style={{ borderRadius: "10%" }}
 										>
 											Add Product
@@ -85,12 +89,8 @@ const ManageProducts = () => {
 								<div className="col-md-3 col-6">
 									<Link to={`/create/category`}>
 										<button
-											className="btn btn-outline-warning"
-											style={{ borderRadius: "10%", left: 0 }}
-											onClick={() => {
-												var newProducts = products;
-												setProducts(reverseArr([...newProducts]));
-											}}
+											className="btn btn-outline-warning addCat"
+											style={{ borderRadius: "10%" }}
 										>
 											Add Category
 											<IoMdAdd
