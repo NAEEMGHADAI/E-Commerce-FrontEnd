@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { isAuthenticated } from "../auth";
 import { createCategory } from "./apiAdmin";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { IoMdAdd } from "react-icons/io";
 import "../assets/css/AddCategory.css";
 
 const AddCategory = () => {
@@ -49,7 +51,7 @@ const AddCategory = () => {
 			<div className="text-center">
 				<button className="btn btn-outline-primary">
 					<span>Create Category &nbsp;</span>
-					<AiOutlinePlusCircle size="18" />
+					<AiOutlinePlusCircle size="18" style={{ marginTop: "6px" }} />
 				</button>
 			</div>
 		</form>
@@ -57,47 +59,62 @@ const AddCategory = () => {
 
 	const showSuccess = () => {
 		if (success) {
-			return <h3 className="text-success"> {name} is created </h3>;
+			return (
+				<div className="alert alert-info text-center">
+					<img
+						src="https://img.icons8.com/ios/24/000000/ok--v1.png"
+						alt="success"
+					/>
+					&nbsp; {name} Successfully Created
+				</div>
+			);
 		}
 	};
 	const showError = () => {
 		if (error) {
-			return <h3 className="text-danger"> Category should be unique. </h3>;
+			return (
+				<div className="alert alert-danger text-center">
+					<img
+						src="https://img.icons8.com/office/23/000000/error.png"
+						className="mb-1"
+						alt="error"
+					/>
+					&nbsp; Category Should be Unique
+				</div>
+			);
 		}
 	};
 
 	return (
-		// <Layout
-		//     title="Add a new category."
-		//     descripton={`G'DAY ${user.name} , Ready to Add A New Category?`}>
-		// <>
-		// 	<Menu />
-		// 	<br />
-		// 	<div className="row">
-		// 		<div className="col-md-8 offset-md-2">
-		// 			<h5 className="pl-0">
-		// 				Good Day {user.name} , Ready to Add A New Category?
-		// 			</h5>
-		// 			<hr />
-		// 			{newCategoryForm()}
-		// 			{showSuccess()}
-		// 			{showError()}
-		// 			{goBack()}
-		// 		</div>
-		// 	</div>
-		// </>
-		// </Layout>
-
-		<div class="row justify-content-center rowAddCategory">
+		<div class="row justify-content-center rowAddCategory pt-5">
 			<div class="AddCategorybox shadowAddCategory p-3">
 				<br />
 				<div className="row">
 					<div className="col-md-10 offset-md-1">
-						<h5 className="pl-0">Create New Category Here...</h5>
+						<div className="row">
+							<div className="col-md-10">
+								<h5 className="pl-0">Create New Category Here...</h5>
+							</div>
+							<div className="col-md-2">
+								<Link to={`/create/product`}>
+									<button
+										className="btn btn-outline-primary"
+										style={{ borderRadius: "10%" }}
+									>
+										Add Product
+										<IoMdAdd
+											style={{ paddingTop: "6px" }}
+											size="18"
+											color="blue"
+										/>
+									</button>
+								</Link>
+							</div>
+						</div>
 						<br />
-						{newCategoryForm()}
 						{showSuccess()}
 						{showError()}
+						{newCategoryForm()}
 					</div>
 				</div>
 			</div>

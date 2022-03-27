@@ -1,8 +1,6 @@
 import React from "react";
 import { isAuthenticated } from "../auth";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
-import AddCategory from "../admin/AddCategory";
-import AddProduct from "../admin/AddProduct";
 import Orders from "../admin/Orders";
 import ManageProducts from "../admin/ManageProducts";
 import PurchaseHistory from "./UserInfo/PurchaseHistory";
@@ -33,12 +31,6 @@ const AdminDashboard = () => {
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Nav.Link eventKey="AddProduct">Add Product</Nav.Link>
-									</Nav.Item>
-									<Nav.Item>
-										<Nav.Link eventKey="AddCategory">Add Category</Nav.Link>
-									</Nav.Item>
-									<Nav.Item>
 										<Nav.Link eventKey="PurchaseHistory">
 											Purchase History
 										</Nav.Link>
@@ -47,12 +39,6 @@ const AdminDashboard = () => {
 							</Col>
 							<Col sm={9}>
 								<Tab.Content>
-									<Tab.Pane eventKey="AddCategory">
-										<AddCategory />
-									</Tab.Pane>
-									<Tab.Pane eventKey="AddProduct">
-										<AddProduct />
-									</Tab.Pane>
 									<Tab.Pane eventKey="Orders">
 										<Orders />
 									</Tab.Pane>

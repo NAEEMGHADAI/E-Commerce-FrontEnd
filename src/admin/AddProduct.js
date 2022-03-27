@@ -3,6 +3,8 @@ import { isAuthenticated } from "../auth";
 import { FiUpload } from "react-icons/fi";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { createProduct, getCategories } from "./apiAdmin";
+import { Link } from "react-router-dom";
+import { IoMdAdd } from "react-icons/io";
 import "../assets/css/AddProduct.css";
 
 const AddProduct = () => {
@@ -186,37 +188,66 @@ const AddProduct = () => {
 
 	const showError = () => (
 		<div
-			className="alert alert-danger"
+			className="alert alert-danger text-center"
 			style={{ display: error ? "" : "none" }}
 		>
-			{error}
+			<img
+				src="https://img.icons8.com/office/23/000000/error.png"
+				className="mb-1"
+				alt="error"
+			/>
+			&nbsp; {error}
 		</div>
 	);
 
 	const showSuccess = () => (
 		<div
-			className="alert alert-info"
+			className="alert alert-info text-center"
 			style={{ display: createdProduct ? "" : "none" }}
 		>
-			<h2>{`${createdProduct}`} is created!</h2>
+			<img
+				src="https://img.icons8.com/ios/24/000000/ok--v1.png"
+				alt="success"
+			/>
+			&nbsp; {`${createdProduct}`} is created!
 		</div>
 	);
 
 	const showLoading = () =>
 		loading && (
-			<div className="alert alert-success">
-				<h2>Loading...</h2>
+			<div className="alert alert-success text-center">
+				<p>Loading....</p>
 			</div>
 		);
 
 	return (
-		<div class="row justify-content-center rowAddProduct">
+		<div class="row justify-content-center rowAddProduct pt-5">
 			<div class="AddProductbox shadowAddProduct p-3">
 				<br />
 
 				<div className="row ">
 					<div className="col-md-10 offset-md-1">
-						<h5 className="pl-0">Create New Product Here...</h5>
+						<div className="row">
+							<div className="col-md-10">
+								<h5 className="pl-0">Create New Product Here... </h5>
+							</div>
+							<div className="col-md-2">
+								<Link to={`/create/category`}>
+									<button
+										className="btn btn-outline-warning"
+										style={{ borderRadius: "10%", left: 0 }}
+									>
+										Add Category
+										<IoMdAdd
+											style={{ paddingTop: "6px" }}
+											size="18"
+											color="yellow"
+										/>
+									</button>
+								</Link>
+							</div>
+						</div>
+
 						<br />
 						{showLoading()}
 						{showSuccess()}

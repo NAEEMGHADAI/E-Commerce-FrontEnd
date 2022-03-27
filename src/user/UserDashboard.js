@@ -3,8 +3,6 @@ import { isAuthenticated } from "../auth";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 import "../assets/css/UserDashboard.css";
 import PurchaseHistory from "./UserInfo/PurchaseHistory";
-import AddProduct from "../admin/AddProduct";
-import AddCategory from "../admin/AddCategory";
 import Orders from "../admin/Orders";
 import ManageProducts from "../admin/ManageProducts";
 import SellerApi from "./UserInfo/SellerApi";
@@ -39,12 +37,6 @@ const Dashboard = () => {
 										<Nav.Link eventKey="SellerApi">Seller Api</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Nav.Link eventKey="AddProduct">Add Product</Nav.Link>
-									</Nav.Item>
-									<Nav.Item>
-										<Nav.Link eventKey="AddCategory">Add Category</Nav.Link>
-									</Nav.Item>
-									<Nav.Item>
 										<Nav.Link eventKey="PurchaseHistory">
 											Purchase History
 										</Nav.Link>
@@ -61,12 +53,6 @@ const Dashboard = () => {
 									</Tab.Pane>
 									<Tab.Pane eventKey="SellerApi">
 										<SellerApi />
-									</Tab.Pane>
-									<Tab.Pane eventKey="AddProduct">
-										<AddProduct />
-									</Tab.Pane>
-									<Tab.Pane eventKey="AddCategory">
-										<AddCategory />
 									</Tab.Pane>
 									<Tab.Pane eventKey="PurchaseHistory">
 										<PurchaseHistory />

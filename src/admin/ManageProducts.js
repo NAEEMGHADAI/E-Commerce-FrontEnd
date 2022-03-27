@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { getProducts, deleteProduct } from "./apiAdmin";
 import moment from "moment";
 import { BiSort } from "react-icons/bi";
+import { IoMdAdd } from "react-icons/io";
 import "../assets/css/ManageProduct.css";
 
 const ManageProducts = () => {
@@ -60,15 +61,48 @@ const ManageProducts = () => {
 								<button
 									className="btn btn-primary"
 									style={{ borderRadius: "10%", marginLeft: "55%" }}
-									onClick={() => {
-										var newProducts = products;
-										setProducts(reverseArr([...newProducts]));
-									}}
 								>
 									Sort By Date
 									<BiSort style={{ paddingTop: "6px" }} size="18" />
 								</button>
 							</h5>
+							<div className="row pl-2">
+								<div className="col-md-9 col-6">
+									<Link to={`/create/product`}>
+										<button
+											className="btn btn-outline-primary"
+											style={{ borderRadius: "10%" }}
+										>
+											Add Product
+											<IoMdAdd
+												style={{ paddingTop: "6px" }}
+												size="18"
+												color="blue"
+											/>
+										</button>
+									</Link>
+								</div>
+								<div className="col-md-3 col-6">
+									<Link to={`/create/category`}>
+										<button
+											className="btn btn-outline-warning"
+											style={{ borderRadius: "10%", left: 0 }}
+											onClick={() => {
+												var newProducts = products;
+												setProducts(reverseArr([...newProducts]));
+											}}
+										>
+											Add Category
+											<IoMdAdd
+												style={{ paddingTop: "6px" }}
+												size="18"
+												color="yellow"
+											/>
+										</button>
+									</Link>
+								</div>
+							</div>
+
 							<br />
 							{/* {products.map((p, i) => {
 								const data = {

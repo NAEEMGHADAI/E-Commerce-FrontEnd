@@ -39,7 +39,6 @@ const Signin = ({ location }) => {
 		setMessage("");
 		setValues({ ...values, error: false, loading: true });
 		signin({ email, password }).then((data) => {
-			console.log("signin: ", values);
 			if (data.error) {
 				setValues({ ...values, error: data.error, loading: false });
 			} else {
