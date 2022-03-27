@@ -4,6 +4,8 @@ import { Tab, Row, Col, Nav } from "react-bootstrap";
 import Orders from "../admin/Orders";
 import ManageProducts from "../admin/ManageProducts";
 import PurchaseHistory from "./UserInfo/PurchaseHistory";
+import Users from "../admin/Users";
+import UserApplication from "../admin/UserApplication";
 
 const AdminDashboard = () => {
 	const {
@@ -31,6 +33,14 @@ const AdminDashboard = () => {
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
+										<Nav.Link eventKey="Users">Users</Nav.Link>
+									</Nav.Item>
+									<Nav.Item>
+										<Nav.Link eventKey="UsersApplications">
+											Users Applications
+										</Nav.Link>
+									</Nav.Item>
+									<Nav.Item>
 										<Nav.Link eventKey="PurchaseHistory">
 											Purchase History
 										</Nav.Link>
@@ -44,6 +54,12 @@ const AdminDashboard = () => {
 									</Tab.Pane>
 									<Tab.Pane eventKey="ManageProducts">
 										<ManageProducts />
+									</Tab.Pane>
+									<Tab.Pane eventKey="Users">
+										<Users />
+									</Tab.Pane>
+									<Tab.Pane eventKey="UsersApplications">
+										<UserApplication />
 									</Tab.Pane>
 									<Tab.Pane eventKey="PurchaseHistory">
 										<PurchaseHistory />
