@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { isAuthenticated } from "../../auth";
+import { isAuthenticated, isLoggedIn } from "../../auth";
 import { getPurchaseHistory } from "../apiUser";
 import moment from "moment";
 import { BiSort } from "react-icons/bi";
@@ -9,7 +9,7 @@ const PurchaseHistory = () => {
 	const [history, setHistory] = useState([]);
 	const {
 		user: { _id },
-	} = isAuthenticated();
+	} = isLoggedIn();
 	const token = isAuthenticated().token;
 	const init = (userId, token) => {
 		getPurchaseHistory(userId, token).then((data) => {

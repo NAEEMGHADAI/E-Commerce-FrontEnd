@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { read, listRelated } from "./apiCore";
+import { read, listRelated, getRelatedProducts, getProductById } from "./apiCore";
 import { Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import { addItem } from "./cartHelpers";
@@ -22,14 +22,14 @@ const Product = (props) => {
 
 	const loadSingleProduct = (productId) => {
 		setLoading(true);
-		read(productId).then((data) => {
+		getProductById(productId).then((data) => {
 			if (data.error) {
 				setError(data.error);
 				setLoading(false);
 			} else {
 				setProduct(data);
 				// fetch related products
-				listRelated(data._id).then((data) => {
+				getRelatedProducts(data._id).then((data) => {
 					if (data.error) {
 						setError(data.error);
 						setLoading(false);
@@ -124,7 +124,7 @@ const Product = (props) => {
 									<div className="col-md-3 col-12 mb-5 mt-5 text-center">
 										<ShowImage
 											item={product}
-											url="product"
+											url={product.thumbnailLink}
 											height="300px"
 											width="300px"
 										/>

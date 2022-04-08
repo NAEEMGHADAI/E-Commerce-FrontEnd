@@ -1,24 +1,25 @@
 import { API } from "../config";
 import queryString from "query-string";
 
-export const getProducts = (sortBy) => {
-	return fetch(`${API}/products?sortBy=${sortBy}&order=desc&limit=8`, {
-		method: "GET",
-	})
-		.then((response) => {
-			return response.json();
-		})
-		.catch((err) => console.log(err));
+export const getProducts = async (sortBy) => {
+	const response = await fetch(`${API}/product`);
+	const json = await response.json();
+	
+	if (!response.ok) {
+		return { error: json.message };
+	}
+	return json.products;
 };
 
-export const getCategories = () => {
-	return fetch(`${API}/categories`, {
-		method: "GET",
-	})
-		.then((response) => {
-			return response.json();
-		})
-		.catch((err) => console.log(err));
+
+export const getCategories = async () => {
+	const response = await fetch(`${API}/category`);
+	const json = await response.json();
+	
+	if (!response.ok) {
+		return { error: json.message };
+	}
+	return json.categories;
 };
 
 export const getFilteredProducts = (skip, limit, filters = {}) => {
@@ -64,6 +65,26 @@ export const read = (productId) => {
 		})
 		.catch((err) => console.log(err));
 };
+
+export const getProductById = async (productId) => {
+	const response = await fetch(`${API}/product/${productId}`);
+	const json = await response.json();
+	
+	if (!response.ok) {
+		return { error: json.message };
+	}
+	return json.product;
+}
+
+export const getRelatedProducts = async (productId) => {
+	const response = await fetch(`${API}/product/${productId}`);
+	const json = await response.json();
+	
+	if (!response.ok) {
+		return { error: json.message };
+	}
+	return [json.product];
+}
 
 export const listRelated = (productId) => {
 	return fetch(`${API}/products/related/${productId}`, {

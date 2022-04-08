@@ -49,7 +49,7 @@ export default function CartItem({ product, handleRefresh }) {
 					<Link onClick={() => showProduct(product)}>
 						<ShowImage
 							item={product}
-							url="product"
+							url={product.thumbnailLink}
 							height="180px"
 							width="200px"
 						/>

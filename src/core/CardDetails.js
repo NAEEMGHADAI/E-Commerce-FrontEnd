@@ -150,7 +150,7 @@ const CardDetails = ({
 
 							<ShowImage
 								item={product}
-								url="product"
+								url={product.thumbnailLink}
 								height="195px"
 								width="175px"
 							/>

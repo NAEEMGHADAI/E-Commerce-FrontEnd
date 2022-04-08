@@ -4,7 +4,7 @@ import { API } from "../config";
 const ShowImage = ({ item, url, height, width }) => (
 	<div className="product-img">
 		<img
-			src={`${API}/${url}/photo/${item._id}`}
+			src={url}
 			alt={item.name}
 			className="mb-2"
 			height={height}

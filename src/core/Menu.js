@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withRouter, NavLink } from "react-router-dom";
-import { signout, isAuthenticated } from "../auth";
+import { signout, isAuthenticated, isLoggedIn } from "../auth";
 import { itemTotal } from "./cartHelpers";
 import { FaShoppingCart } from "react-icons/fa";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -15,10 +15,10 @@ const Menu = ({ history }) => {
 	let firstLetter = "";
 	let id = "";
 	let user = "";
-	if (isAuthenticated()) {
+	if (isLoggedIn()) {
 		const {
 			user: { _id, name, role },
-		} = isAuthenticated();
+		} = isLoggedIn();
 		firstLetter = name;
 		id = _id;
 		if (role === 0) {

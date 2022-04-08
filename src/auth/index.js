@@ -1,4 +1,5 @@
 import { API } from "../config";
+import jwt_decode from "jwt-decode";
 
 export const signup = (user) => {
 	return fetch(`${API}/signup`, {
@@ -34,6 +35,27 @@ export const signin = (user) => {
 		});
 };
 
+export const loginUser = async (user) => {
+	const response = await fetch(`${API}/auth/login`, { 
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(user),
+	});
+	const json = await response.json();
+
+	console.log(response)
+	console.log('looooool')
+	console.log(json)
+	console.log('looooool')
+	
+	if (!response.ok) {
+		return { error: json.message };
+	}
+	return json.token;
+}
+
 export const authenticate = (data, next) => {
 	if (typeof window !== "undefined") {
 		localStorage.setItem("jwt", JSON.stringify(data));
@@ -65,4 +87,35 @@ export const isAuthenticated = () => {
 		return false;
 	}
 };
+
+export const isLoggedIn = () => {
+	if (typeof window == "undefined") {
+		return false;
+	}
+	const token = localStorage.getItem("jwt");
+
+	try {
+		const decoded = jwt_decode(token);
+
+		const user = { 
+			_id: decoded.userId, 
+			userRoleId: decoded.userRoleId,
+			role: decoded.role,
+			name: decoded.firstName,
+			exp: decoded.exp,
+			iat: decoded.iat,
+		}
+	
+		console.log({user})	
+	
+		if (decoded) {
+			return ({ user })
+		} else {
+			return false;
+		}
+	} catch (err) {
+		return false;
+	}
+}
+
 console.log(isAuthenticated.name);

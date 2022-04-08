@@ -1,10 +1,10 @@
 import React from "react";
-import { isAuthenticated } from "../../auth";
+import { isAuthenticated, isLoggedIn } from "../../auth";
 
 const SellerApi = () => {
 	const {
 		user: { _id, name, role },
-	} = isAuthenticated();
+	} = isLoggedIn();
 	return (
 		<div class="row justify-content-center rowAddProduct pt-5">
 			<div class="AddProductbox shadowAddProduct p-3">

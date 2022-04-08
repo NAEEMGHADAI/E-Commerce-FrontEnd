@@ -1,5 +1,5 @@
 import React from "react";
-import { isAuthenticated } from "../auth";
+import { isAuthenticated, isLoggedIn } from "../auth";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 import "../assets/css/UserDashboard.css";
 import PurchaseHistory from "./UserInfo/PurchaseHistory";
@@ -10,7 +10,7 @@ import SellerApi from "./UserInfo/SellerApi";
 const Dashboard = () => {
 	const {
 		user: { name, role },
-	} = isAuthenticated();
+	} = isLoggedIn();
 	const token = isAuthenticated().token;
 
 	const userLinks = () => {

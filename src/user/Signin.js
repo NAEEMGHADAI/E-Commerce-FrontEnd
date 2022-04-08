@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
-import { signin, authenticate, isAuthenticated } from "../auth";
+import { signin, authenticate, isAuthenticated, loginUser } from "../auth";
 import Loader from "../Loader/Loader";
 import "../assets/css/Signin.css";
 import { FiSend } from "react-icons/fi";
@@ -9,8 +9,8 @@ import hidePwdImg from "../assets/img/Password/hide.png";
 
 const Signin = ({ location }) => {
 	const [values, setValues] = useState({
-		email: "abcd@gmail.com",
-		password: "abcd7863",
+		email: "seller@domain.com",
+		password: "1234",
 		error: "",
 		loading: false,
 		redirectToReferrer: false,
@@ -38,7 +38,7 @@ const Signin = ({ location }) => {
 
 		setMessage("");
 		setValues({ ...values, error: false, loading: true });
-		signin({ email, password }).then((data) => {
+		loginUser({ email, password }).then((data) => {
 			if (data.error) {
 				setValues({ ...values, error: data.error, loading: false });
 			} else {
