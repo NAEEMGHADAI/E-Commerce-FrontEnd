@@ -1,265 +1,268 @@
-import React, { useState, useEffect } from "react";
-import { isAuthenticated } from "../auth";
-import { listOrders, getStatusValues } from "./apiAdmin";
-import moment from "moment";
-import { useHistory, Link } from "react-router-dom";
-import "../assets/css/Orders.css";
-import Loader2 from "../Loader/Loader2";
-import { BiSort } from "react-icons/bi";
+import React, { useState, useEffect } from 'react';
+import { isAuthenticated } from '../auth';
+import { listOrders, getStatusValues } from './apiAdmin';
+import moment from 'moment';
+import { useHistory, Link } from 'react-router-dom';
+import '../assets/css/Orders.css';
+import Loader2 from '../Loader/Loader2';
+import { BiSort } from 'react-icons/bi';
 
 const Orders = () => {
-	const [orders, setOrders] = useState([]);
-	const [statusValues, setStatusValues] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const history = useHistory();
-	const { user, token } = isAuthenticated();
-	let [status, setStatus] = useState("All");
+  const [orders, setOrders] = useState([]);
+  const [statusValues, setStatusValues] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
+  const { user, token } = isAuthenticated();
+  let [status, setStatus] = useState('All');
 
-	const loadOrders = () => {
-		setLoading(true);
-		listOrders(user._id, token).then((data) => {
-			if (data.error) {
-				console.log(data.error);
-				setLoading(true);
-			} else {
-				setOrders(data);
-				setLoading(false);
-			}
-		});
-	};
+  const loadOrders = () => {
+    setLoading(true);
+    listOrders(user._id, token).then(data => {
+      if (data.error) {
+        console.log(data.error);
+        setLoading(true);
+      } else {
+        console.log('hehe');
+        console.log(data);
+        console.log('hehe');
+        setOrders(data);
+        setLoading(false);
+      }
+    });
+  };
 
-	const loadStatusValues = () => {
-		getStatusValues(user._id, token).then((data) => {
-			if (data.error) {
-				console.log(data.error);
-			} else {
-				setStatusValues(data);
-			}
-		});
-	};
+  const loadStatusValues = () => {
+    getStatusValues(user._id, token).then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setStatusValues(data);
+      }
+    });
+  };
 
-	useEffect(() => {
-		loadOrders();
-		loadStatusValues();
-	}, []);
+  useEffect(() => {
+    loadOrders();
+    loadStatusValues();
+  }, []);
 
-	const showOrdersLength = () => {
-		if (orders.length > 0) {
-			return (
-				<h5 className="text-danger text-center">
-					Total orders: {orders.length}
-				</h5>
-			);
-		} else {
-			return <h5 className="text-danger text-center">No orders</h5>;
-		}
-	};
+  const showOrdersLength = () => {
+    if (orders.length > 0) {
+      return (
+        <h5 className="text-danger text-center">
+          Total orders: {orders.length}
+        </h5>
+      );
+    } else {
+      return <h5 className="text-danger text-center">No orders</h5>;
+    }
+  };
 
-	const reverseArr = (arr) => {
-		const revArr = arr.reverse();
-		return revArr;
-	};
+  const reverseArr = arr => {
+    const revArr = arr.reverse();
+    return revArr;
+  };
 
-	const OrderDetail = (id) => {
-		history.push({
-			pathname: `/admin/dashboard/${id}`,
-			state: {
-				id: id,
-			},
-		});
-	};
+  const OrderDetail = id => {
+    history.push({
+      pathname: `/admin/dashboard/${id}`,
+      state: {
+        id: id,
+      },
+    });
+  };
 
-	return (
-		// <Layout
-		//   title="Orders"
-		//   descripton={`G'day ${user.name}, you can manage all the orders here`}
-		//   className="container-fluid"
-		// >
-		<>
-			<div class="row justify-content-center rowOrders">
-				<div class="shadowOrders Ordersbox p-3">
-					<br />
-					<div className="row">
-						<div className="col-md-12 ">
-							{loading ? (
-								<>
-									<Loader2 />
-								</>
-							) : (
-								<>
-									{showOrdersLength()}
-									<div className="container">
-										<form className="RadioForm">
-											<label className="RadioLabel pr-1">
-												<input
-													type="radio"
-													name="radio"
-													onClick={() => setStatus("All")}
-												/>
-												<span>All</span>
-											</label>
-											<label className="RadioLabel pr-1">
-												<input
-													type="radio"
-													name="radio"
-													onClick={() => setStatus("Not processed")}
-												/>
-												<span>Not Processed</span>
-											</label>
-											<label className="RadioLabel pr-1">
-												<input
-													type="radio"
-													name="radio"
-													onClick={() => setStatus("Processing")}
-												/>
-												<span>Processing</span>
-											</label>
-											<label className="RadioLabel pr-1">
-												<input
-													type="radio"
-													name="radio"
-													onClick={() => setStatus("Shipped")}
-												/>
-												<span>Shipped</span>
-											</label>
-											<label className="RadioLabel pr-1">
-												<input
-													type="radio"
-													name="radio"
-													onClick={() => setStatus("Delivered")}
-												/>
-												<span>Delivered</span>
-											</label>
-											<label className="RadioLabel pr-1">
-												<input
-													type="radio"
-													name="radio"
-													onClick={() => setStatus("Cancelled")}
-												/>
-												<span>Cancelled</span>
-											</label>
-										</form>
-										<button
-											className="btn btn-primary"
-											style={{ borderRadius: "10%", marginLeft: "40%" }}
-											onClick={() => {
-												var newOrders = orders;
-												setOrders(reverseArr([...newOrders]));
-											}}
-										>
-											Sort By Date
-											<BiSort style={{ paddingTop: "6px" }} size="18" />
-										</button>
-									</div>
-									<hr />
+  return (
+    // <Layout
+    //   title="Orders"
+    //   descripton={`G'day ${user.name}, you can manage all the orders here`}
+    //   className="container-fluid"
+    // >
+    <>
+      <div class="row justify-content-center rowOrders">
+        <div class="shadowOrders Ordersbox p-3">
+          <br />
+          <div className="row">
+            <div className="col-md-12 ">
+              {loading ? (
+                <>
+                  <Loader2 />
+                </>
+              ) : (
+                <>
+                  {showOrdersLength()}
+                  <div className="container">
+                    <form className="RadioForm">
+                      <label className="RadioLabel pr-1">
+                        <input
+                          type="radio"
+                          name="radio"
+                          onClick={() => setStatus('All')}
+                        />
+                        <span>All</span>
+                      </label>
+                      <label className="RadioLabel pr-1">
+                        <input
+                          type="radio"
+                          name="radio"
+                          onClick={() => setStatus('Not processed')}
+                        />
+                        <span>Not Processed</span>
+                      </label>
+                      <label className="RadioLabel pr-1">
+                        <input
+                          type="radio"
+                          name="radio"
+                          onClick={() => setStatus('Processing')}
+                        />
+                        <span>Processing</span>
+                      </label>
+                      <label className="RadioLabel pr-1">
+                        <input
+                          type="radio"
+                          name="radio"
+                          onClick={() => setStatus('Shipped')}
+                        />
+                        <span>Shipped</span>
+                      </label>
+                      <label className="RadioLabel pr-1">
+                        <input
+                          type="radio"
+                          name="radio"
+                          onClick={() => setStatus('Delivered')}
+                        />
+                        <span>Delivered</span>
+                      </label>
+                      <label className="RadioLabel pr-1">
+                        <input
+                          type="radio"
+                          name="radio"
+                          onClick={() => setStatus('Cancelled')}
+                        />
+                        <span>Cancelled</span>
+                      </label>
+                    </form>
+                    <button
+                      className="btn btn-primary"
+                      style={{ borderRadius: '10%', marginLeft: '40%' }}
+                      onClick={() => {
+                        var newOrders = orders;
+                        setOrders(reverseArr([...newOrders]));
+                      }}
+                    >
+                      Sort By Date
+                      <BiSort style={{ paddingTop: '6px' }} size="18" />
+                    </button>
+                  </div>
+                  <hr />
 
-									<div class="table-responsive">
-										<table class="table  table-hover">
-											<thead className="table-primary">
-												<tr>
-													<th>Id</th>
-													<th>Order On</th>
-													<th>Ordered By</th>
-													<th>Status</th>
-													<th>Total Products</th>
-												</tr>
-											</thead>
-											<tbody>
-												{orders.map((o, oIndex) => (
-													<>
-														{o.status === status ? (
-															<tr>
-																<td key={oIndex}>
-																	<Link
-																		className="productLink"
-																		onClick={() => OrderDetail(o._id)}
-																		style={{ textDecoration: "none" }}
-																	>
-																		<span className="font-weight-normal">
-																			{o._id}
-																		</span>
-																	</Link>
-																</td>
-																<td>
-																	<span className="font-weight-normal">
-																		{moment(o.createdAt).fromNow()}
-																	</span>
-																</td>
-																<td>
-																	<span className="font-weight-normal">
-																		{o.user.name}
-																	</span>
-																</td>
-																<td>
-																	{o.status === "Update Status" ? (
-																		<span className="font-weight-normal">
-																			Not set
-																		</span>
-																	) : (
-																		<span className="font-weight-normal">
-																			{o.status}
-																		</span>
-																	)}
-																</td>
-																<td>
-																	<span className="font-weight-normal text-success ml-5">
-																		{o.products.length}
-																	</span>
-																</td>
-															</tr>
-														) : (
-															<>
-																{status === "All" ? (
-																	<tr>
-																		<td key={oIndex}>
-																			<Link
-																				className="productLink"
-																				onClick={() => OrderDetail(o._id)}
-																				style={{ textDecoration: "none" }}
-																			>
-																				<span className="font-weight-normal">
-																					{o._id}
-																				</span>
-																			</Link>
-																		</td>
-																		<td>
-																			<span className="font-weight-normal">
-																				{moment(o.createdAt).fromNow()}
-																			</span>
-																		</td>
-																		<td>
-																			<span className="font-weight-normal">
-																				{o.user.name}
-																			</span>
-																		</td>
-																		<td>
-																			{o.status === "Update Status" ? (
-																				<span className="font-weight-normal">
-																					Not set
-																				</span>
-																			) : (
-																				<span className="font-weight-normal">
-																					{o.status}
-																				</span>
-																			)}
-																		</td>
-																		<td>
-																			<span className="font-weight-normal text-success ml-5">
-																				{o.products.length}
-																			</span>
-																		</td>
-																	</tr>
-																) : (
-																	<></>
-																)}
-															</>
-														)}
-													</>
-												))}
-											</tbody>
-										</table>
-									</div>
-									{/* {orders.map((o, oIndex) => {
+                  <div class="table-responsive">
+                    <table class="table  table-hover">
+                      <thead className="table-primary">
+                        <tr>
+                          <th>Id</th>
+                          <th>Order On</th>
+                          <th>Ordered By</th>
+                          <th>Status</th>
+                          <th>Total Products</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {orders.map((o, oIndex) => (
+                          <>
+                            {o.status === status ? (
+                              <tr>
+                                <td key={oIndex}>
+                                  <Link
+                                    className="productLink"
+                                    onClick={() => OrderDetail(o._id)}
+                                    style={{ textDecoration: 'none' }}
+                                  >
+                                    <span className="font-weight-normal">
+                                      {o._id}
+                                    </span>
+                                  </Link>
+                                </td>
+                                <td>
+                                  <span className="font-weight-normal">
+                                    {moment(o.createdAt).fromNow()}
+                                  </span>
+                                </td>
+                                <td>
+                                  <span className="font-weight-normal">
+                                    {o.user.name}
+                                  </span>
+                                </td>
+                                <td>
+                                  {o.status === 'Update Status' ? (
+                                    <span className="font-weight-normal">
+                                      Not set
+                                    </span>
+                                  ) : (
+                                    <span className="font-weight-normal">
+                                      {o.status}
+                                    </span>
+                                  )}
+                                </td>
+                                <td>
+                                  <span className="font-weight-normal text-success ml-5">
+                                    {o.products.length}
+                                  </span>
+                                </td>
+                              </tr>
+                            ) : (
+                              <>
+                                {status === 'All' ? (
+                                  <tr>
+                                    <td key={oIndex}>
+                                      <Link
+                                        className="productLink"
+                                        onClick={() => OrderDetail(o._id)}
+                                        style={{ textDecoration: 'none' }}
+                                      >
+                                        <span className="font-weight-normal">
+                                          {o._id}
+                                        </span>
+                                      </Link>
+                                    </td>
+                                    <td>
+                                      <span className="font-weight-normal">
+                                        {moment(o.createdAt).fromNow()}
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <span className="font-weight-normal">
+                                        {o.user.name}
+                                      </span>
+                                    </td>
+                                    <td>
+                                      {o.status === 'Update Status' ? (
+                                        <span className="font-weight-normal">
+                                          Not set
+                                        </span>
+                                      ) : (
+                                        <span className="font-weight-normal">
+                                          {o.status}
+                                        </span>
+                                      )}
+                                    </td>
+                                    <td>
+                                      <span className="font-weight-normal text-success ml-5">
+                                        {o.products.length}
+                                      </span>
+                                    </td>
+                                  </tr>
+                                ) : (
+                                  <></>
+                                )}
+                              </>
+                            )}
+                          </>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {/* {orders.map((o, oIndex) => {
 								return (
 									<div
 										className="mt-5"
@@ -309,15 +312,15 @@ const Orders = () => {
 									</div>
 								);
 							})} */}
-								</>
-							)}
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
-		// </Layout>
-	);
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+    // </Layout>
+  );
 };
 
 export default Orders;

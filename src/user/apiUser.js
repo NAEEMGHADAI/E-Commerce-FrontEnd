@@ -1,42 +1,43 @@
-import { API } from "../config";
+import { API } from '../config';
 
 export const read = (userId, token) => {
   return fetch(`${API}/user/${userId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
+    credentials: 'include',
   })
-    .then((response) => {
+    .then(response => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 };
 
 export const update = (userId, token, user) => {
   return fetch(`${API}/user/${userId}`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(user),
   })
-    .then((response) => {
+    .then(response => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 };
 
 export const updateUser = (user, next) => {
-  if (typeof window !== "undefined") {
-    if (localStorage.getItem("jwt")) {
-      let auth = JSON.parse(localStorage.getItem("jwt"));
+  if (typeof window !== 'undefined') {
+    if (localStorage.getItem('jwt')) {
+      let auth = JSON.parse(localStorage.getItem('jwt'));
       auth.user = user;
-      localStorage.setItem("jwt", JSON.stringify(auth));
+      localStorage.setItem('jwt', JSON.stringify(auth));
       next();
     }
   }
@@ -44,15 +45,16 @@ export const updateUser = (user, next) => {
 
 export const getPurchaseHistory = (userId, token) => {
   return fetch(`${API}/orders/by/user/${userId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
+    credentials: 'include',
   })
-    .then((response) => {
+    .then(response => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 };

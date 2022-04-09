@@ -4,21 +4,19 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import Orders from '../admin/Orders';
 import ManageProducts from '../admin/ManageProducts';
 import PurchaseHistory from './UserInfo/PurchaseHistory';
-import Users from '../admin/Users';
-import UserApplication from '../admin/UserApplication';
 
-const AdminDashboard = () => {
+const SellerDashboard = () => {
   const {
     user: { name, role },
   } = isAuthenticated();
 
-  const adminLinks = () => {
+  const sellerLinks = () => {
     return (
       <>
         <div className="container-fluid pt-2">
           <div className="text-center">
             <h3>Welcome, {name}</h3>
-            <p>{role === 0 ? 'Admin' : 'Registered User'}</p>
+            <p>Registered Seller</p>
           </div>
           <Tab.Container id="left-tabs-example" defaultActiveKey="Orders">
             <Row>
@@ -55,12 +53,6 @@ const AdminDashboard = () => {
                   <Tab.Pane eventKey="ManageProducts">
                     <ManageProducts />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="Users">
-                    <Users />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="UsersApplications">
-                    <UserApplication />
-                  </Tab.Pane>
                   <Tab.Pane eventKey="PurchaseHistory">
                     <PurchaseHistory />
                   </Tab.Pane>
@@ -93,11 +85,11 @@ const AdminDashboard = () => {
     <>
       <br />
       <div className="row pt-1">
-        <div className="col-md-12 col-12">{adminLinks()}</div>
+        <div className="col-md-12 col-12">{sellerLinks()}</div>
         {/* <div className="col-9">{adminInfo()}</div> */}
       </div>
     </>
   );
 };
 
-export default AdminDashboard;
+export default SellerDashboard;
