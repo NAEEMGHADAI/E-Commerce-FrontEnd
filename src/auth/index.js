@@ -1,12 +1,13 @@
 import { API } from '../config';
 
 export const signup = user => {
-  return fetch(`${API}/signup`, {
+  return fetch(`${API}/signup/customer`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify(user),
   })
     .then(response => {
@@ -14,6 +15,7 @@ export const signup = user => {
     })
     .catch(err => {
       console.log(err);
+      return { error: err.message };
     });
 };
 
@@ -70,3 +72,22 @@ export const isAuthenticated = () => {
   }
 };
 console.log(isAuthenticated.name);
+
+export const signupSeller = user => {
+  return fetch(`${API}/signup/seller`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify(user),
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+      return { error: err.message };
+    });
+};

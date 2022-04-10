@@ -29,14 +29,6 @@ const Dashboard = () => {
                     <Nav.Link eventKey="Orders">Orders</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="ManageProducts">
-                      Manage Products
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="SellerApi">Seller Api</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
                     <Nav.Link eventKey="PurchaseHistory">
                       Purchase History
                     </Nav.Link>
@@ -47,12 +39,6 @@ const Dashboard = () => {
                 <Tab.Content>
                   <Tab.Pane eventKey="Orders">
                     <Orders />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="ManageProducts">
-                    <ManageProducts />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="SellerApi">
-                    <SellerApi />
                   </Tab.Pane>
                   <Tab.Pane eventKey="PurchaseHistory">
                     <PurchaseHistory />

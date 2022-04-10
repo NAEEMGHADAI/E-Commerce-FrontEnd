@@ -1,149 +1,163 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { signupSeller } from '../../auth';
 
 const SellerRegistration = () => {
-	const [values, setValues] = useState({
-		fname: "",
-		lname: "",
-		email: "",
-		phone: "",
-		password: "",
-		address: "",
-		loading: false,
-		error: "",
-	});
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    loading: false,
+    message: '',
+    error: '',
+  });
 
-	const { fname, lname, email, phone, password, address, loading, error } =
-		values;
+  const { name, email, phone, password, loading, message, error } = values;
 
-	// load categories and set form data
+  // load categories and set form data
 
-	const handleChange = (name) => (event) => {
-		const value = event.target.value;
-		setValues({ ...values, [name]: value });
-	};
+  const handleChange = name => event => {
+    const value = event.target.value;
+    setValues({ ...values, [name]: value });
+  };
 
-	const clickSubmit = (event) => {
-		event.preventDefault();
-		setValues({ ...values, error: "", loading: true });
-	};
+  const clickSubmit = event => {
+    event.preventDefault();
+    setValues({ ...values, error: '', loading: true });
 
-	const newPostForm = () => (
-		<form className="mb-3" onSubmit={clickSubmit}>
-			<div className="row">
-				<div className="col-md-6">
-					<div className="form-group">
-						<label className="text-muted">First Name</label>
-						<input
-							onChange={handleChange("fname")}
-							type="text"
-							className="form-control"
-							value={fname}
-						/>
-					</div>
-				</div>
-				<div className="col-md-6">
-					<div className="form-group">
-						<label className="text-muted">Last Name</label>
-						<input
-							onChange={handleChange("lname")}
-							className="form-control"
-							value={lname}
-						/>
-					</div>
-				</div>
-			</div>
+    signupSeller({ name, email, password }).then(data => {
+      if (data.error) {
+        setValues({
+          ...values,
+          error: data.error,
+          loading: false,
+          message: '',
+        });
+      } else {
+        setValues({
+          ...values,
+          error: '',
+          loading: false,
+          message: 'Seller account created',
+        });
+      }
+    });
+  };
 
-			<div className="row">
-				<div className="col-md-6">
-					<div className="form-group">
-						<label className="text-muted">Email</label>
-						<input
-							onChange={handleChange("email")}
-							type="email"
-							className="form-control"
-							value={email}
-						/>
-					</div>
-				</div>
-				<div className="col-md-6">
-					<div className="form-group">
-						<label className="text-muted">Phone</label>
-						<input
-							onChange={handleChange("phone")}
-							type="number"
-							className="form-control"
-							value={phone}
-						/>
-					</div>
-				</div>
-			</div>
+  const newPostForm = () => (
+    <form className="mb-3" onSubmit={clickSubmit}>
+      <div className="row">
+        <div className="col-md-6">
+          <div className="form-group">
+            <label className="text-muted">Name</label>
+            <input
+              onChange={handleChange('name')}
+              type="text"
+              className="form-control"
+              value={name}
+            />
+          </div>
+        </div>
+      </div>
 
-			<div className="form-group">
-				<label className="text-muted">Password</label>
-				<input
-					onChange={handleChange("password")}
-					type="password"
-					className="form-control"
-					value={password}
-				/>
-			</div>
-			<div className="form-group">
-				<label className="text-muted">Address</label>
-				<textarea
-					onChange={handleChange("address")}
-					type="text"
-					className="form-control"
-					value={address}
-				/>
-			</div>
+      <div className="row">
+        <div className="col-md-6">
+          <div className="form-group">
+            <label className="text-muted">Email</label>
+            <input
+              onChange={handleChange('email')}
+              type="email"
+              className="form-control"
+              value={email}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="form-group">
+            <label className="text-muted">Phone</label>
+            <input
+              onChange={handleChange('phone')}
+              type="number"
+              className="form-control"
+              value={phone}
+            />
+          </div>
+        </div>
+      </div>
 
-			<div className="text-center">
-				<button className="btn btn-outline-primary">Register</button>
-			</div>
-		</form>
-	);
+      <div className="form-group">
+        <label className="text-muted">Password</label>
+        <input
+          onChange={handleChange('password')}
+          type="password"
+          className="form-control"
+          value={password}
+        />
+      </div>
 
-	// const showError = () => (
-	// 	<div
-	// 		className="alert alert-danger"
-	// 		style={{ display: error ? "" : "none" }}
-	// 	>
-	// 		{error}
-	// 	</div>
-	// );
+      <div className="text-center">
+        <button className="btn btn-outline-primary">Register</button>
+      </div>
+    </form>
+  );
 
-	// const showSuccess = () => (
-	// 	<div
-	// 		className="alert alert-info"
-	// 		style={{ display: createdProduct ? "" : "none" }}
-	// 	>
-	// 		<h2>{`${createdProduct}`} is created!</h2>
-	// 	</div>
-	// );
+  // const showError = () => (
+  // 	<div
+  // 		className="alert alert-danger"
+  // 		style={{ display: error ? "" : "none" }}
+  // 	>
+  // 		{error}
+  // 	</div>
+  // );
 
-	const showLoading = () =>
-		loading && (
-			<div className="alert alert-success">
-				<h2>Loading...</h2>
-			</div>
-		);
+  // const showSuccess = () => (
+  // 	<div
+  // 		className="alert alert-info"
+  // 		style={{ display: createdProduct ? "" : "none" }}
+  // 	>
+  // 		<h2>{`${createdProduct}`} is created!</h2>
+  // 	</div>
+  // );
 
-	return (
-		<div class="row justify-content-center rowAddProduct pt-5">
-			<div class="AddProductbox shadowAddProduct p-3">
-				<br />
+  const showLoading = () =>
+    loading && (
+      <div className="alert alert-success">
+        <h2>Loading...</h2>
+      </div>
+    );
 
-				<div className="row">
-					<div className="col-md-10 offset-md-1">
-						<h5 className="pl-0">Seller Registration</h5>
-						<br />
-						{showLoading()}
-						{newPostForm()}
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+  const showMessage = () =>
+    message?.length !== 0 && (
+      <div className="alert alert-success">
+        <h2>{message}</h2>
+      </div>
+    );
+
+  const showError = () =>
+    error?.length !== 0 && (
+      <div className="alert alert-danger">
+        <h2>{error}</h2>
+      </div>
+    );
+
+  return (
+    <div class="row justify-content-center rowAddProduct pt-5">
+      <div class="AddProductbox shadowAddProduct p-3">
+        <br />
+
+        <div className="row">
+          <div className="col-md-10 offset-md-1">
+            <h5 className="pl-0">Seller Registration</h5>
+            <br />
+            {showLoading()}
+            {showMessage()}
+            {showError()}
+            {newPostForm()}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SellerRegistration;

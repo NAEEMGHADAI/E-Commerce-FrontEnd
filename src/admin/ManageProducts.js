@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { isAuthenticated } from '../auth';
 import { Link, useHistory } from 'react-router-dom';
-import { deleteProduct, getProductsForAdmin } from './apiAdmin';
+import {
+  deleteProduct,
+  getProductsForAdmin,
+  getProductsForSeller,
+} from './apiAdmin';
 import moment from 'moment';
 import { BiSort } from 'react-icons/bi';
 import { IoMdAdd } from 'react-icons/io';
@@ -13,13 +17,23 @@ const ManageProducts = () => {
   const { user, token } = isAuthenticated();
 
   const loadProducts = () => {
-    getProductsForAdmin().then(data => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        setProducts(data);
-      }
-    });
+    if (user.role === 0) {
+      getProductsForAdmin().then(data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          setProducts(data);
+        }
+      });
+    } else {
+      getProductsForSeller(user.userRoleId).then(data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          setProducts(data);
+        }
+      });
+    }
   };
 
   const reverseArr = arr => {

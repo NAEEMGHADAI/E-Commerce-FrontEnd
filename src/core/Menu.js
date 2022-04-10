@@ -23,8 +23,10 @@ const Menu = ({ history }) => {
     id = _id;
     if (role === 0) {
       user = 'admin';
-    } else {
+    } else if (role === 1) {
       user = 'user';
+    } else {
+      user = 'seller';
     }
   }
 

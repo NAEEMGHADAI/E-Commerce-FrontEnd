@@ -20,7 +20,10 @@ export const getCategories = () => {
     .then(response => {
       return response.json();
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      return { error: err.message };
+    });
 };
 
 export const getFilteredProducts = (skip, limit, filters = {}) => {

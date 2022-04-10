@@ -3,11 +3,12 @@ import { isAuthenticated } from '../auth';
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import Orders from '../admin/Orders';
 import ManageProducts from '../admin/ManageProducts';
+import SellerApi from '../admin/SellerApi';
 import PurchaseHistory from './UserInfo/PurchaseHistory';
 
 const SellerDashboard = () => {
   const {
-    user: { name, role },
+    user: { name },
   } = isAuthenticated();
 
   const sellerLinks = () => {
@@ -31,12 +32,7 @@ const SellerDashboard = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="Users">Users</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="UsersApplications">
-                      Users Applications
-                    </Nav.Link>
+                    <Nav.Link eventKey="SellerApi">Seller API</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="PurchaseHistory">
@@ -52,6 +48,9 @@ const SellerDashboard = () => {
                   </Tab.Pane>
                   <Tab.Pane eventKey="ManageProducts">
                     <ManageProducts />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="SellerApi">
+                    <SellerApi />
                   </Tab.Pane>
                   <Tab.Pane eventKey="PurchaseHistory">
                     <PurchaseHistory />

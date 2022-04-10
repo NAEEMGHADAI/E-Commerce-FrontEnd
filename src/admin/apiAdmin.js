@@ -118,6 +118,24 @@ export const listOrders = (userId, token) => {
     });
 };
 
+export const listOrdersForSeller = (sellerId, token) => {
+  return fetch(`${API}/order/list/seller/${sellerId}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: 'include',
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+      return { error: err.message };
+    });
+};
+
 export const getStatusValues = (userId, token) => {
   return fetch(`${API}/order/status-values/${userId}`, {
     method: 'GET',
@@ -167,6 +185,20 @@ export const getProducts = () => {
       return response.json();
     })
     .catch(err => console.log(err));
+};
+
+export const getProductsForSeller = sellerId => {
+  return fetch(`${API}/products/${sellerId}/all`, {
+    method: 'GET',
+    credentials: 'include',
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+      return { error: err.message };
+    });
 };
 
 export const getProductsForAdmin = () => {

@@ -3,14 +3,16 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Signup from './user/Signup';
 import Signin from './user/Signin';
 import Home from './core/Home';
+import AdminRoute from './auth/AdminRoute';
+import AdminOrSellerRoute from './auth/AdminOrSellerRoute';
 import UserRoute from './auth/UserRoute';
+import SellerRoute from './auth/SellerRoute';
+import SellerApi from './admin/SellerApi';
 import Dashboard from './user/UserDashboard';
 import AdminDashboard from './user/AdminDashboard';
 import SellerDashboard from './user/SellerDashboard';
 import AddCategory from './admin/AddCategory';
 import AddProduct from './admin/AddProduct';
-import AdminRoute from './auth/AdminRoute';
-import SellerRoute from './auth/SellerRoute';
 import Shop from './core/Shop';
 import Product from './core/Product';
 import Cart from './core/Cart';
@@ -44,17 +46,30 @@ const Routes = () => {
           exact
           component={SellerDashboard}
         />
-        <AdminRoute path="/admin/products" exact component={ManageProducts} />
+        <SellerRoute path="/seller/api" exact component={SellerApi} />
+        <AdminOrSellerRoute
+          path="/admin/products"
+          exact
+          component={ManageProducts}
+        />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
-        <AdminRoute path="/create/category" exact component={AddCategory} />
-        <AdminRoute path="/create/product" exact component={AddProduct} />
-        <AdminRoute path="/admin/orders" exact component={Orders} />
-        <AdminRoute
+        <AdminOrSellerRoute
+          path="/create/category"
+          exact
+          component={AddCategory}
+        />
+        <AdminOrSellerRoute
+          path="/create/product"
+          exact
+          component={AddProduct}
+        />
+        <AdminOrSellerRoute path="/admin/orders" exact component={Orders} />
+        <AdminOrSellerRoute
           path="/admin/product/update/:productId"
           exact
           component={UpdateProduct}
         />
-        <AdminRoute
+        <AdminOrSellerRoute
           path="/admin/dashboard/:OrderId"
           exact
           component={OrderDetails}
